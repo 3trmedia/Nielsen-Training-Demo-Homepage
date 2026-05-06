@@ -327,18 +327,52 @@
 
     /* ── WHY NTAC ────────────────────────────────── */
     .why-ntac { background: var(--navy-light); }
-    .why-grid {
+    .why-outer {
       display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 56px;
+      grid-template-columns: 1.4fr 1fr;
+      grid-template-areas:
+        "video heading"
+        "body  body";
+      column-gap: 56px;
+      row-gap: 40px;
       align-items: start;
     }
     .video-card {
+      grid-area: video;
       border-radius: 8px;
       overflow: hidden;
       border: 1px solid rgba(74,144,217,0.3);
       box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(74,144,217,0.1);
     }
+    .why-heading-block { grid-area: heading; }
+    .why-body-block {
+      grid-area: body;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 56px;
+      align-items: start;
+    }
+    .why-body-block .why-body { margin-bottom: 0; }
+    .video-card-header {
+      background: var(--navy-mid);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(74,144,217,0.2);
+    }
+    .video-card-header img { height: 28px; width: auto; }
+    .video-card-header-text { flex: 1; }
+    .video-card-header-text strong {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      text-transform: uppercase;
+    }
+    .video-card-header-text span { font-size: 11px; color: var(--grey); }
     .video-placeholder {
       position: relative;
       background: #08111a;
@@ -650,9 +684,12 @@
       section { padding: 64px 20px; }
 
       /* Why NTAC — stack */
-      .why-grid { grid-template-columns: 1fr; gap: 32px; align-items: start; }
-
-      /* Bullets — single column */
+      .why-outer {
+        grid-template-columns: 1fr;
+        grid-template-areas: "heading" "video" "body";
+        row-gap: 28px;
+      }
+      .why-body-block { grid-template-columns: 1fr; gap: 20px; }
       .bullets-grid { grid-template-columns: 1fr; }
 
       /* Courses — 2 col */
@@ -695,6 +732,7 @@
 
       /* Why NTAC */
       .why-body { font-size: 14.5px; }
+      .why-body-block { grid-template-columns: 1fr; }
 
       /* Courses — single col */
       .courses-grid { grid-template-columns: 1fr; }
@@ -797,8 +835,17 @@
 <!-- ── WHY NTAC ─────────────────────────────── -->
 <section class="why-ntac">
   <div class="section-inner">
-    <div class="why-grid">
+    <div class="why-outer">
+
+      <!-- Video card -->
       <div class="video-card">
+        <div class="video-card-header">
+          <img src="images/logo-shield-color.png" alt="NTAC" />
+          <div class="video-card-header-text">
+            <strong>Who Is Todd Nielsen</strong>
+            <span>Nielsen Training and Consulting</span>
+          </div>
+        </div>
         <div class="video-placeholder" id="videoThumb" onclick="playVideo()">
           <img src="images/rifle-proficiency.jpg" alt="Todd Nielsen" />
           <div class="video-play">
@@ -813,37 +860,26 @@
           <a href="https://youtu.be/YIBYasEvXTU" target="_blank" rel="noopener">Watch on YouTube ↗</a>
         </div>
       </div>
-      <div class="why-content">
+
+      <!-- Heading only — stays level with video top -->
+      <div class="why-heading-block">
         <span class="section-label">About NTAC</span>
-        <h2 class="section-heading">Why Train With NTAC?</h2>
+        <h2 class="section-heading" style="color: var(--accent);">Why Train With NTAC?</h2>
+      </div>
+
+      <!-- Body + bullets — full width beneath video -->
+      <div class="why-body-block">
         <p class="why-body">When you train with NTAC, you're learning from someone who has actually used these skills under pressure. Todd Nielsen spent over 25 years in law enforcement, served on Special Operations units, and provided protective detail for two U.S. Presidents. He built NTAC on one belief: that every responsible citizen deserves access to the same level of training trusted by the military and law enforcement. You'll leave every class more capable, more confident, and more prepared than when you walked in.</p>
         <div class="bullets-grid">
-          <div class="bullet-item">
-            <span class="bullet-icon">&#10003;</span>
-            <span class="bullet-text">Operationally Proven Instructors</span>
-          </div>
-          <div class="bullet-item">
-            <span class="bullet-icon">&#10003;</span>
-            <span class="bullet-text">Results After Class One</span>
-          </div>
-          <div class="bullet-item">
-            <span class="bullet-icon">&#10003;</span>
-            <span class="bullet-text">Built for Every Skill Level</span>
-          </div>
-          <div class="bullet-item">
-            <span class="bullet-icon">&#10003;</span>
-            <span class="bullet-text">Personalized Instruction Every Class</span>
-          </div>
-          <div class="bullet-item">
-            <span class="bullet-icon">&#10003;</span>
-            <span class="bullet-text">Hands-On Every Session</span>
-          </div>
-          <div class="bullet-item">
-            <span class="bullet-icon">&#10003;</span>
-            <span class="bullet-text">Military Tactics, Civilian Application</span>
-          </div>
+          <div class="bullet-item"><span class="bullet-icon">&#10003;</span><span class="bullet-text">Operationally Proven Instructors</span></div>
+          <div class="bullet-item"><span class="bullet-icon">&#10003;</span><span class="bullet-text">Results After Class One</span></div>
+          <div class="bullet-item"><span class="bullet-icon">&#10003;</span><span class="bullet-text">Built for Every Skill Level</span></div>
+          <div class="bullet-item"><span class="bullet-icon">&#10003;</span><span class="bullet-text">Personalized Instruction Every Class</span></div>
+          <div class="bullet-item"><span class="bullet-icon">&#10003;</span><span class="bullet-text">Hands-On Every Session</span></div>
+          <div class="bullet-item"><span class="bullet-icon">&#10003;</span><span class="bullet-text">Military Tactics, Civilian Application</span></div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
