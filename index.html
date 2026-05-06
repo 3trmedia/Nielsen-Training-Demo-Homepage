@@ -329,30 +329,16 @@
     .why-ntac { background: var(--navy-light); }
     .why-outer {
       display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      grid-template-areas:
-        "video heading"
-        "body  body";
-      column-gap: 56px;
-      row-gap: 40px;
-      align-items: start;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
     }
     .video-card {
-      grid-area: video;
       border-radius: 8px;
       overflow: hidden;
       border: 1px solid rgba(74,144,217,0.3);
       box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(74,144,217,0.1);
     }
-    .why-heading-block { grid-area: heading; }
-    .why-body-block {
-      grid-area: body;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0 56px;
-      align-items: start;
-    }
-    .why-body-block .why-body { margin-bottom: 0; }
     .video-card-header {
       background: var(--navy-mid);
       padding: 14px 18px;
@@ -684,12 +670,7 @@
       section { padding: 64px 20px; }
 
       /* Why NTAC — stack */
-      .why-outer {
-        grid-template-columns: 1fr;
-        grid-template-areas: "heading" "video" "body";
-        row-gap: 28px;
-      }
-      .why-body-block { grid-template-columns: 1fr; gap: 20px; }
+      .why-outer { grid-template-columns: 1fr; gap: 32px; }
       .bullets-grid { grid-template-columns: 1fr; }
 
       /* Courses — 2 col */
@@ -732,7 +713,6 @@
 
       /* Why NTAC */
       .why-body { font-size: 14.5px; }
-      .why-body-block { grid-template-columns: 1fr; }
 
       /* Courses — single col */
       .courses-grid { grid-template-columns: 1fr; }
@@ -861,14 +841,10 @@
         </div>
       </div>
 
-      <!-- Heading only — stays level with video top -->
-      <div class="why-heading-block">
+      <!-- Right column: heading + body + bullets -->
+      <div class="why-content">
         <span class="section-label">About NTAC</span>
         <h2 class="section-heading" style="color: var(--accent);">Why Train With NTAC?</h2>
-      </div>
-
-      <!-- Body + bullets — full width beneath video -->
-      <div class="why-body-block">
         <p class="why-body">When you train with NTAC, you're learning from someone who has actually used these skills under pressure. Todd Nielsen spent over 25 years in law enforcement, served on Special Operations units, and provided protective detail for two U.S. Presidents. He built NTAC on one belief: that every responsible citizen deserves access to the same level of training trusted by the military and law enforcement. You'll leave every class more capable, more confident, and more prepared than when you walked in.</p>
         <div class="bullets-grid">
           <div class="bullet-item"><span class="bullet-icon">&#10003;</span><span class="bullet-text">Operationally Proven Instructors</span></div>
