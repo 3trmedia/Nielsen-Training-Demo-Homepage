@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nielsen Training and Consulting — NTAC</title>
+  <link rel="icon" type="image/png" href="images/logo-shield-color.png" />
+  <link rel="apple-touch-icon" href="images/logo-shield-color.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
@@ -590,6 +592,83 @@
       font-size: 13px;
       color: #4a5a6a;
     }
+
+    /* ── EMPOWER BANNER ──────────────────────────── */
+    .empower-banner {
+      width: 100%;
+      display: block;
+      line-height: 0;
+    }
+    .empower-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── EMAIL SIGNUP ────────────────────────────── */
+    .email-signup {
+      background: var(--navy-light);
+      padding: 72px 40px;
+      border-top: 1px solid rgba(74,144,217,0.15);
+      border-bottom: 1px solid rgba(74,144,217,0.15);
+    }
+    .email-signup-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .email-signup-head {
+      margin-bottom: 36px;
+    }
+    .email-signup-head h3 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .email-signup-head p {
+      font-size: 15px;
+      color: var(--grey);
+    }
+    .email-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr auto;
+      gap: 12px;
+      align-items: end;
+    }
+    .email-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .email-form-group label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+    .email-form-group label span { color: #e05555; }
+    .email-form-group input {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 3px;
+      padding: 12px 16px;
+      font-size: 14px;
+      color: var(--white);
+      font-family: 'Roboto', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .email-form-group input::placeholder { color: #4a5a6a; }
+    .email-form-group input:focus { border-color: var(--accent); }
+    .email-form .btn { height: 46px; white-space: nowrap; padding: 0 28px; }
+    .email-form-note {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #4a5a6a;
+    }
   </style>
 </head>
 <body>
@@ -598,7 +677,7 @@
 <nav>
   <div class="nav-inner">
     <div class="nav-logo">
-      <img src="images/logo.png" alt="NTAC" />
+      <img src="images/logo-shield-color.png" alt="NTAC" />
     </div>
     <ul class="nav-links">
       <li><a href="#">Home</a></li>
@@ -843,12 +922,47 @@
   </div>
 </section>
 
+<!-- ── EMPOWER BANNER ────────────────────── -->
+<div class="empower-banner">
+  <img src="images/empower-banner.jpg" alt="Empower Yourself — Nielsen Training and Consulting" />
+</div>
+
+<!-- ── EMAIL SIGNUP ──────────────────────── -->
+<div class="email-signup" id="stay-in-the-know">
+  <div class="email-signup-inner">
+    <div class="email-signup-head">
+      <h3>Stay In The Know</h3>
+      <p>Sign up for our mailing list and be the first to find out about new classes, discounts, limited-time offers, and promotions.</p>
+    </div>
+    <form class="email-form" onsubmit="handleSignup(event)">
+      <div class="email-form-group">
+        <label>Name <span>*</span></label>
+        <input type="text" name="name" placeholder="Your name" required />
+      </div>
+      <div class="email-form-group">
+        <label>Email <span>*</span></label>
+        <input type="email" name="email" placeholder="your@email.com" required />
+      </div>
+      <div class="email-form-group">
+        <label>Phone</label>
+        <input type="tel" name="phone" placeholder="(385) 000-0000" />
+      </div>
+      <div class="email-form-group">
+        <label>Zip Code</label>
+        <input type="text" name="zip" placeholder="84604" maxlength="5" />
+      </div>
+      <button type="submit" class="btn btn-primary">Join Mailing List</button>
+    </form>
+    <p class="email-form-note">We respect your privacy. No spam — only training updates and class announcements.</p>
+  </div>
+</div>
+
 <!-- ── FOOTER ───────────────────────────────── -->
 <footer>
   <div class="footer-grid">
     <div>
       <div class="footer-logo">
-        <img src="images/logo.png" alt="NTAC" />
+        <img src="images/logo-shield-color.png" alt="NTAC" />
       </div>
       <p class="footer-tagline">Real training. Real results.<br><br>Nielsen Training and Consulting — Utah's premier tactical firearms instruction organization.</p>
     </div>
@@ -899,5 +1013,20 @@
   </div>
 </footer>
 
+<script>
+  function handleSignup(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = 'You\'re In!';
+    btn.style.background = '#1a8a1a';
+    btn.disabled = true;
+    e.target.reset();
+    setTimeout(() => {
+      btn.textContent = 'Join Mailing List';
+      btn.style.background = '';
+      btn.disabled = false;
+    }, 4000);
+  }
+</script>
 </body>
 </html>
