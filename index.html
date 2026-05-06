@@ -766,7 +766,7 @@
 <section class="why-ntac">
   <div class="section-inner">
     <div class="why-grid">
-      <div class="video-placeholder">
+      <div class="video-placeholder" id="videoThumb" onclick="playVideo()">
         <img src="images/rifle-proficiency.jpg" alt="Todd Nielsen" />
         <div class="video-play">
           <div class="play-icon">
@@ -1010,6 +1010,18 @@
 </footer>
 
 <script>
+  function playVideo() {
+    const thumb = document.getElementById('videoThumb');
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube.com/embed/YIBYasEvXTU?autoplay=1&rel=0';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:6px;';
+    thumb.innerHTML = '';
+    thumb.appendChild(iframe);
+    thumb.style.cursor = 'default';
+  }
+
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
 
