@@ -329,7 +329,7 @@
     .why-ntac { background: var(--navy-light); }
     .why-grid {
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
+      grid-template-columns: 1.5fr 1fr;
       gap: 56px;
       align-items: start;
     }
@@ -338,30 +338,6 @@
       overflow: hidden;
       border: 1px solid rgba(74,144,217,0.3);
       box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(74,144,217,0.1);
-    }
-    .video-card-header {
-      background: var(--navy-mid);
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border-bottom: 1px solid rgba(74,144,217,0.2);
-    }
-    .video-card-header img { height: 28px; width: auto; }
-    .video-card-header-text { flex: 1; }
-    .video-card-header-text strong {
-      display: block;
-      font-family: 'Oswald', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      color: var(--white);
-      text-transform: uppercase;
-    }
-    .video-card-header-text span {
-      font-size: 11px;
-      color: var(--grey);
-      letter-spacing: 0.04em;
     }
     .video-placeholder {
       position: relative;
@@ -823,13 +799,6 @@
   <div class="section-inner">
     <div class="why-grid">
       <div class="video-card">
-        <div class="video-card-header">
-          <img src="images/logo-shield-color.png" alt="NTAC" />
-          <div class="video-card-header-text">
-            <strong>Who Is Todd Nielsen</strong>
-            <span>Nielsen Training and Consulting</span>
-          </div>
-        </div>
         <div class="video-placeholder" id="videoThumb" onclick="playVideo()">
           <img src="images/rifle-proficiency.jpg" alt="Todd Nielsen" />
           <div class="video-play">
