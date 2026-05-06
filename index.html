@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nielsen Training and Consulting — NTAC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #0d1b2a;
+      --navy-light: #142032;
+      --navy-mid:   #1a2a3a;
+      --accent:     #4a90d9;
+      --cta:        #1a73e8;
+      --cta-hover:  #1558b0;
+      --white:      #ffffff;
+      --grey:       #b0bec5;
+      --gold:       #f5c518;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── BUTTONS ─────────────────────────────────── */
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background: var(--cta);
+      color: var(--white);
+      border: 2px solid var(--cta);
+    }
+    .btn-primary:hover { background: var(--cta-hover); border-color: var(--cta-hover); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid var(--white);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
+    .btn-sm {
+      padding: 10px 20px;
+      font-size: 13px;
+    }
+
+    /* ── NAV ─────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(13, 27, 42, 0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(74, 144, 217, 0.2);
+    }
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-logo img {
+      height: 48px;
+      width: auto;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      margin-left: 16px;
+    }
+
+    /* ── HERO ────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding-top: 70px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/hero-bg.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      filter: brightness(0.45);
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(13,27,42,0.3) 0%, rgba(13,27,42,0.7) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+      padding: 40px 24px;
+    }
+    .hero-eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(52px, 7vw, 88px);
+      font-weight: 700;
+      line-height: 1.0;
+      color: var(--white);
+      margin-bottom: 20px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero-sub {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #d0dde8;
+      margin-bottom: 20px;
+      letter-spacing: 0.03em;
+    }
+    .hero-body {
+      font-size: 15px;
+      color: var(--grey);
+      max-width: 580px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--grey);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-family: 'Oswald', sans-serif;
+      animation: bounce 2s infinite;
+    }
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: var(--accent);
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── STATS BAR ───────────────────────────────── */
+    .stats-bar {
+      background: var(--navy-mid);
+      border-top: 1px solid rgba(74,144,217,0.2);
+      border-bottom: 1px solid rgba(74,144,217,0.2);
+      padding: 36px 40px;
+    }
+    .stats-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-number {
+      font-family: 'Oswald', sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      display: block;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: var(--grey);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* ── SECTION COMMONS ─────────────────────────── */
+    section { padding: 96px 40px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .section-heading {
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px;
+      color: var(--grey);
+      margin-bottom: 56px;
+    }
+    .centered { text-align: center; }
+
+    /* ── WHY NTAC ────────────────────────────────── */
+    .why-ntac { background: var(--navy-light); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .video-placeholder {
+      position: relative;
+      background: #08111a;
+      border-radius: 6px;
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      cursor: pointer;
+      border: 1px solid rgba(74,144,217,0.2);
+    }
+    .video-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.55;
+    }
+    .video-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+    .play-icon {
+      width: 68px;
+      height: 68px;
+      background: rgba(26, 115, 232, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .video-placeholder:hover .play-icon {
+      background: var(--cta);
+      transform: scale(1.08);
+    }
+    .play-icon svg { margin-left: 4px; }
+    .video-caption {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.8);
+      text-transform: uppercase;
+    }
+    .why-content .section-heading { color: var(--accent); }
+    .why-body {
+      color: #cdd6e0;
+      margin-bottom: 32px;
+      font-size: 15.5px;
+      line-height: 1.75;
+    }
+    .bullets-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 24px;
+    }
+    .bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .bullet-icon {
+      color: var(--accent);
+      font-size: 16px;
+      line-height: 1.5;
+      flex-shrink: 0;
+    }
+    .bullet-text {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.5;
+    }
+
+    /* ── COURSES ─────────────────────────────────── */
+    .courses { background: var(--navy); }
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .course-card {
+      background: var(--navy-light);
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.25s ease;
+    }
+    .course-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(74,144,217,0.5);
+      box-shadow: 0 12px 40px rgba(26,115,232,0.18);
+    }
+    .course-card-img {
+      height: 200px;
+      overflow: hidden;
+    }
+    .course-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .course-card:hover .course-card-img img { transform: scale(1.05); }
+    .course-card-body {
+      padding: 22px 22px 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .course-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .course-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .course-desc {
+      font-size: 14px;
+      color: var(--grey);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .course-card-footer {
+      padding: 18px 22px 22px;
+    }
+    .course-card-footer .btn { width: 100%; text-align: center; }
+
+    /* ── TESTIMONIALS ────────────────────────────── */
+    .testimonials { background: var(--navy-light); }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testi-card {
+      background: var(--navy-mid);
+      border-radius: 6px;
+      padding: 32px 28px;
+      border: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      flex-direction: column;
+    }
+    .testi-stars {
+      color: var(--gold);
+      font-size: 18px;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+    }
+    .testi-quote {
+      font-style: italic;
+      color: #d8e4ef;
+      font-size: 15px;
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 20px;
+    }
+    .testi-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--grey);
+      text-transform: uppercase;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 16px;
+    }
+    .testi-name span { color: var(--accent); }
+
+    /* ── CTA ─────────────────────────────────────── */
+    .cta-section {
+      background: var(--navy);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(26,115,232,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-section .section-heading { font-size: clamp(32px, 4vw, 52px); }
+    .cta-sub {
+      font-size: 18px;
+      color: var(--grey);
+      margin-bottom: 36px;
+    }
+    .cta-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .cta-contact {
+      font-size: 14px;
+      color: var(--grey);
+      letter-spacing: 0.04em;
+    }
+    .cta-contact a:hover { color: var(--white); }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    footer {
+      background: #07101a;
+      padding: 72px 40px 0;
+      border-top: 1px solid rgba(74,144,217,0.2);
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.5fr 1fr;
+      gap: 48px;
+      padding-bottom: 56px;
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .footer-logo img { height: 40px; }
+    .footer-tagline {
+      font-style: italic;
+      color: var(--grey);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 240px;
+    }
+    .footer-col h4 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a {
+      font-size: 14px;
+      color: var(--grey);
+      transition: color 0.2s;
+    }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: var(--grey);
+    }
+    .footer-contact-item span:first-child {
+      color: var(--accent);
+      font-size: 15px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .social-icons {
+      display: flex;
+      gap: 14px;
+      margin-top: 4px;
+    }
+    .social-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--grey);
+      font-size: 16px;
+      transition: all 0.2s;
+    }
+    .social-icon:hover {
+      background: var(--cta);
+      border-color: var(--cta);
+      color: var(--white);
+    }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      text-align: center;
+      font-size: 13px;
+      color: #4a5a6a;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="images/logo.png" alt="NTAC" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Training</a></li>
+      <li><a href="#">Calendar</a></li>
+      <li><a href="#">Instructors</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Gear</a></li>
+      <li><a href="#">Affiliates</a></li>
+      <li class="nav-cta"><a href="#courses" class="btn btn-primary btn-sm">Sign Up for a Class</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Nielsen Training and Consulting</p>
+    <h1>Train With<br><span>the Best.</span></h1>
+    <p class="hero-sub">Professional firearms training for every level — from your first shot to defensive carry.</p>
+    <p class="hero-body">Nielsen Training and Consulting provides real-world firearms and tactical instruction taught by Special Operations veterans and law enforcement professionals. Whether you're picking up a firearm for the first time or sharpening your defensive skills, NTAC gives you the training and confidence to protect yourself and the people you love.</p>
+    <div class="hero-btns">
+      <a href="#courses" class="btn btn-primary">Start Your Training Today</a>
+      <a href="/calendar" class="btn btn-outline">View Upcoming Courses</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- ── STATS BAR ─────────────────────────────── -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-number">60,000+</span>
+      <span class="stat-label">Students Trained</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">25+</span>
+      <span class="stat-label">Years Experience</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">Spec Ops</span>
+      <span class="stat-label">Veteran Instructors</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">Trusted by</span>
+      <span class="stat-label">Law Enforcement</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── WHY NTAC ─────────────────────────────── -->
+<section class="why-ntac">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div class="video-placeholder">
+        <img src="images/about-video-thumb.jpg" alt="Todd Nielsen" />
+        <div class="video-play">
+          <div class="play-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <span class="video-caption">Who Is Todd Nielsen — Watch Video</span>
+        </div>
+      </div>
+      <div class="why-content">
+        <span class="section-label">About NTAC</span>
+        <h2 class="section-heading">Why Train<br>With NTAC?</h2>
+        <p class="why-body">When you train with NTAC, you're learning from someone who has actually used these skills under pressure. Todd Nielsen spent over 25 years in law enforcement, served on Special Operations units, and provided protective detail for two U.S. Presidents. He built NTAC on one belief: that every responsible citizen deserves access to the same level of training trusted by the military and law enforcement. You'll leave every class more capable, more confident, and more prepared than when you walked in.</p>
+        <div class="bullets-grid">
+          <div class="bullet-item">
+            <span class="bullet-icon">&#10003;</span>
+            <span class="bullet-text">Operationally Proven Instructors</span>
+          </div>
+          <div class="bullet-item">
+            <span class="bullet-icon">&#10003;</span>
+            <span class="bullet-text">Results After Class One</span>
+          </div>
+          <div class="bullet-item">
+            <span class="bullet-icon">&#10003;</span>
+            <span class="bullet-text">Built for Every Skill Level</span>
+          </div>
+          <div class="bullet-item">
+            <span class="bullet-icon">&#10003;</span>
+            <span class="bullet-text">Personalized Instruction Every Class</span>
+          </div>
+          <div class="bullet-item">
+            <span class="bullet-icon">&#10003;</span>
+            <span class="bullet-text">Hands-On Every Session</span>
+          </div>
+          <div class="bullet-item">
+            <span class="bullet-icon">&#10003;</span>
+            <span class="bullet-text">Military Tactics, Civilian Application</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── COURSES ──────────────────────────────── -->
+<section class="courses" id="courses">
+  <div class="section-inner">
+    <div class="centered">
+      <span class="section-label">Choose Your Path</span>
+      <h2 class="section-heading">Our Most Popular Courses</h2>
+      <p class="section-sub">Choose your platform. Choose your level. Start training.</p>
+    </div>
+    <div class="courses-grid">
+
+      <!-- Handgun Row -->
+      <div class="course-card">
+        <div class="course-card-img">
+          <img src="images/beginner-handgun.jpg" alt="Beginner Handgun" />
+        </div>
+        <div class="course-card-body">
+          <span class="course-tag">Handgun</span>
+          <h3 class="course-title">Beginner Handgun</h3>
+          <p class="course-desc">Learn the fundamentals of safe firearm handling, proper grip, stance, sight alignment, and trigger control. The perfect starting point for new shooters.</p>
+        </div>
+        <div class="course-card-footer">
+          <a href="#" class="btn btn-primary btn-sm">Sign Up Now</a>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-card-img">
+          <img src="images/handgun-proficiency.jpg" alt="Handgun Proficiency" />
+        </div>
+        <div class="course-card-body">
+          <span class="course-tag">Handgun</span>
+          <h3 class="course-title">Handgun Proficiency</h3>
+          <p class="course-desc">Build on your fundamentals with dynamic drills, faster target acquisition, magazine changes, and real-world shooting scenarios.</p>
+        </div>
+        <div class="course-card-footer">
+          <a href="#" class="btn btn-primary btn-sm">Sign Up Now</a>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-card-img">
+          <img src="images/defensive-handgun.jpg" alt="Defensive Handgun" />
+        </div>
+        <div class="course-card-body">
+          <span class="course-tag">Handgun</span>
+          <h3 class="course-title">Defensive Handgun</h3>
+          <p class="course-desc">Master decision-making, drawing from concealment, low-light shooting, and the legal and moral framework for using a firearm in self-defense.</p>
+        </div>
+        <div class="course-card-footer">
+          <a href="#" class="btn btn-primary btn-sm">Sign Up Now</a>
+        </div>
+      </div>
+
+      <!-- Rifle Row -->
+      <div class="course-card">
+        <div class="course-card-img">
+          <img src="images/beginner-rifle.jpg" alt="Beginner Rifle" />
+        </div>
+        <div class="course-card-body">
+          <span class="course-tag">Rifle</span>
+          <h3 class="course-title">Beginner Rifle</h3>
+          <p class="course-desc">Get introduced to modern sporting rifles and carbines. Learn safe handling, proper zeroing, body position, stance, and consistent target hits.</p>
+        </div>
+        <div class="course-card-footer">
+          <a href="#" class="btn btn-primary btn-sm">Sign Up Now</a>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-card-img">
+          <img src="images/rifle-proficiency.jpg" alt="Rifle Proficiency" />
+        </div>
+        <div class="course-card-body">
+          <span class="course-tag">Rifle</span>
+          <h3 class="course-title">Rifle Proficiency</h3>
+          <p class="course-desc">Take your rifle skills further with movement drills, transitions, malfunction clearances, and precision shooting at extended distances.</p>
+        </div>
+        <div class="course-card-footer">
+          <a href="#" class="btn btn-primary btn-sm">Sign Up Now</a>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-card-img">
+          <img src="images/defensive-rifle.jpg" alt="Defensive Rifle" />
+        </div>
+        <div class="course-card-body">
+          <span class="course-tag">Rifle</span>
+          <h3 class="course-title">Defensive Rifle</h3>
+          <p class="course-desc">Learn to deploy your rifle in high-stress defensive scenarios. Covers positions, rapid target acquisition, sling use, and force-on-force principles.</p>
+        </div>
+        <div class="course-card-footer">
+          <a href="#" class="btn btn-primary btn-sm">Sign Up Now</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ─────────────────────────── -->
+<section class="testimonials">
+  <div class="section-inner">
+    <div class="centered" style="margin-bottom: 56px;">
+      <span class="section-label">Student Reviews</span>
+      <h2 class="section-heading">What Our Students Say</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-quote">"I came in with zero experience and left feeling completely confident. Todd and his team made sure I understood everything before moving on. I'll be back for the next course."</p>
+        <div class="testi-name">[Student Name] &nbsp;·&nbsp; <span>Beginner Handgun</span></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-quote">"Best firearms training I've ever had. The instructors bring real experience into every drill. You can tell immediately that these aren't just range officers — they've actually used these skills."</p>
+        <div class="testi-name">[Student Name] &nbsp;·&nbsp; <span>Defensive Handgun</span></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-quote">"I've taken courses at other ranges and nothing compares to NTAC. Small class sizes, personalized attention, and techniques I still use every single day. Worth every penny."</p>
+        <div class="testi-name">[Student Name] &nbsp;·&nbsp; <span>Handgun Proficiency</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ──────────────────────────────────── -->
+<section class="cta-section">
+  <div class="section-inner">
+    <span class="section-label" style="display:block; text-align:center;">Take the Next Step</span>
+    <h2 class="section-heading" style="color: var(--white);">Ready to Start Training?</h2>
+    <p class="cta-sub">Sign up for a class or reach out with any questions.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn btn-primary">Sign Up for a Class</a>
+      <a href="#" class="btn btn-outline">Contact Us</a>
+    </div>
+    <p class="cta-contact">
+      Nielsen Training and Consulting &nbsp;|&nbsp; <a href="tel:3854012878">385.401.2878</a> &nbsp;|&nbsp; <a href="mailto:info@nielsentraining.com">info@nielsentraining.com</a>
+    </p>
+  </div>
+</section>
+
+<!-- ── FOOTER ───────────────────────────────── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">
+        <img src="images/logo.png" alt="NTAC" />
+      </div>
+      <p class="footer-tagline">Real training. Real results.<br><br>Nielsen Training and Consulting — Utah's premier tactical firearms instruction organization.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Training</a></li>
+        <li><a href="#">Calendar</a></li>
+        <li><a href="#">Instructors</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Gear</a></li>
+        <li><a href="#">Affiliates</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <div class="footer-contact-item">
+        <span>&#9679;</span>
+        <span>Utah, United States</span>
+      </div>
+      <div class="footer-contact-item">
+        <span>&#9679;</span>
+        <a href="tel:3854012878">385.401.2878</a>
+      </div>
+      <div class="footer-contact-item">
+        <span>&#9679;</span>
+        <a href="mailto:info@nielsentraining.com">info@nielsentraining.com</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#" class="social-icon" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" class="social-icon" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" class="social-icon" aria-label="YouTube">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    Nielsen Training and Consulting &copy; 2026. All Rights Reserved.
+  </div>
+</footer>
+
+</body>
+</html>
