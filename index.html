@@ -329,25 +329,55 @@
     .why-ntac { background: var(--navy-light); }
     .why-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .video-card {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(74,144,217,0.3);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(74,144,217,0.1);
+    }
+    .video-card-header {
+      background: var(--navy-mid);
+      padding: 14px 18px;
+      display: flex;
       align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(74,144,217,0.2);
+    }
+    .video-card-header img { height: 28px; width: auto; }
+    .video-card-header-text { flex: 1; }
+    .video-card-header-text strong {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      text-transform: uppercase;
+    }
+    .video-card-header-text span {
+      font-size: 11px;
+      color: var(--grey);
+      letter-spacing: 0.04em;
     }
     .video-placeholder {
       position: relative;
       background: #08111a;
-      border-radius: 6px;
       overflow: hidden;
       aspect-ratio: 16/9;
       cursor: pointer;
-      border: 1px solid rgba(74,144,217,0.2);
     }
     .video-placeholder img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.55;
+      opacity: 0.7;
+      transition: opacity 0.3s;
     }
+    .video-placeholder:hover img { opacity: 0.5; }
     .video-play {
       position: absolute;
       inset: 0;
@@ -356,26 +386,52 @@
       align-items: center;
       justify-content: center;
       gap: 14px;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, transparent 70%);
     }
     .play-icon {
-      width: 68px;
-      height: 68px;
-      background: rgba(26,115,232,0.9);
+      width: 72px;
+      height: 72px;
+      background: rgba(26,115,232,0.92);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.2s;
+      box-shadow: 0 4px 24px rgba(26,115,232,0.5);
     }
-    .video-placeholder:hover .play-icon { background: var(--cta); transform: scale(1.08); }
-    .play-icon svg { margin-left: 4px; }
+    .video-placeholder:hover .play-icon { background: var(--cta); transform: scale(1.1); box-shadow: 0 6px 32px rgba(26,115,232,0.7); }
+    .play-icon svg { margin-left: 5px; }
     .video-caption {
       font-family: 'Oswald', sans-serif;
-      font-size: 13px;
-      letter-spacing: 0.1em;
-      color: rgba(255,255,255,0.8);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.75);
       text-transform: uppercase;
     }
+    .video-card-footer {
+      background: var(--navy-mid);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(74,144,217,0.15);
+    }
+    .video-card-footer span {
+      font-size: 12px;
+      color: var(--grey);
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .video-card-footer a {
+      font-size: 12px;
+      color: var(--accent);
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .video-card-footer a:hover { color: var(--white); }
     .why-content .section-heading { color: var(--accent); }
     .why-body {
       color: #cdd6e0;
@@ -618,7 +674,7 @@
       section { padding: 64px 20px; }
 
       /* Why NTAC — stack */
-      .why-grid { grid-template-columns: 1fr; gap: 36px; }
+      .why-grid { grid-template-columns: 1fr; gap: 32px; align-items: start; }
 
       /* Bullets — single column */
       .bullets-grid { grid-template-columns: 1fr; }
@@ -766,13 +822,26 @@
 <section class="why-ntac">
   <div class="section-inner">
     <div class="why-grid">
-      <div class="video-placeholder" id="videoThumb" onclick="playVideo()">
-        <img src="images/rifle-proficiency.jpg" alt="Todd Nielsen" />
-        <div class="video-play">
-          <div class="play-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+      <div class="video-card">
+        <div class="video-card-header">
+          <img src="images/logo-shield-color.png" alt="NTAC" />
+          <div class="video-card-header-text">
+            <strong>Who Is Todd Nielsen</strong>
+            <span>Nielsen Training and Consulting</span>
           </div>
-          <span class="video-caption">Who Is Todd Nielsen — Watch Video</span>
+        </div>
+        <div class="video-placeholder" id="videoThumb" onclick="playVideo()">
+          <img src="images/rifle-proficiency.jpg" alt="Todd Nielsen" />
+          <div class="video-play">
+            <div class="play-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <span class="video-caption">Play Video — 5:37</span>
+          </div>
+        </div>
+        <div class="video-card-footer">
+          <span>Featured Instructor</span>
+          <a href="https://youtu.be/YIBYasEvXTU" target="_blank" rel="noopener">Watch on YouTube ↗</a>
         </div>
       </div>
       <div class="why-content">
