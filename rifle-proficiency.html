@@ -8,166 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --navy:#0d1b2a; --navy-light:#142032; --navy-mid:#1a2a3a; --accent:#4a90d9; --cta:#1a73e8; --cta-hover:#1558b0; --white:#ffffff; --grey:#b0bec5; --gold:#f5c518; }
-    html { scroll-behavior: smooth; }
-    body { background: var(--navy); color: var(--white); font-family: 'Roboto', sans-serif; font-size: 16px; line-height: 1.65; }
-    h1, h2, h3, h4 { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.04em; }
-    a { color: inherit; text-decoration: none; }
-    .btn { display: inline-block; padding: 14px 28px; font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 3px; cursor: pointer; transition: all 0.2s ease; border: none; }
-    .btn-primary { background: var(--cta); color: var(--white); border: 2px solid var(--cta); }
-    .btn-primary:hover { background: var(--cta-hover); border-color: var(--cta-hover); transform: translateY(-1px); }
-    .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.7); }
-    .btn-outline:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
-    .btn-sm { padding: 10px 20px; font-size: 13px; }
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: rgba(13,27,42,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(74,144,217,0.2); }
-    .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 40px; height: 70px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo img { height: 48px; width: auto; display: block; }
-    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
-    .nav-links a { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); transition: color 0.2s; }
-    .nav-links a:hover { color: var(--white); }
-    .nav-cta { margin-left: 8px; }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
-    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s ease; }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .mobile-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; background: rgba(7,16,26,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(74,144,217,0.2); z-index: 199; padding: 24px 24px 32px; transform: translateY(-100%); opacity: 0; transition: transform 0.3s ease, opacity 0.3s ease; }
-    .mobile-menu.open { transform: translateY(0); opacity: 1; }
-    .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
-    .mobile-menu ul a { display: block; font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); transition: color 0.2s; }
-    .mobile-menu ul a:hover { color: var(--white); }
-    .mobile-menu .btn { width: 100%; text-align: center; }
-    .course-hero { position: relative; height: 380px; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; margin-top: 70px; }
-    .course-hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center 25%; filter: brightness(0.38); }
-    .course-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(13,27,42,0.35) 0%, rgba(13,27,42,0.65) 100%); }
-    .course-hero-content { position: relative; z-index: 2; }
-    .course-hero-content h1 { font-size: clamp(28px, 5vw, 54px); font-weight: 700; color: var(--white); letter-spacing: 0.12em; margin-bottom: 18px; }
-    .course-hero-accent { width: 80px; height: 3px; background: var(--accent); margin: 0 auto; }
-    .course-intro { background: var(--navy); padding: 72px 40px 56px; }
-    .intro-inner { max-width: 1200px; margin: 0 auto; }
-    .intro-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 20px; }
-    .intro-headline { font-size: clamp(26px, 3.8vw, 46px); font-weight: 700; color: var(--white); line-height: 1.1; max-width: 660px; }
-    .intro-sub { font-size: 16px; color: var(--grey); line-height: 1.75; max-width: 780px; margin-bottom: 40px; }
-    .intro-photo { border-radius: 8px; overflow: hidden; border: 1px solid rgba(74,144,217,0.2); }
-    .intro-photo img { width: 100%; max-height: 500px; object-fit: cover; object-position: center 30%; display: block; }
-    .skills-section { background: var(--navy-light); padding: 72px 40px; }
-    .skills-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
-    .skills-col h3 { font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 24px; letter-spacing: 0.06em; }
-    .skills-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
-    .skills-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: #cdd6e0; line-height: 1.5; }
-    .skills-list li::before { content: '•'; color: var(--accent); font-size: 20px; flex-shrink: 0; line-height: 1.2; }
-    .body-col h3 { font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 20px; letter-spacing: 0.04em; }
-    .body-col p { font-size: 15px; color: #cdd6e0; line-height: 1.8; margin-bottom: 16px; }
-    .photo-gallery { display: grid; gap: 6px; background: var(--navy); }
-    .photo-gallery.cols-3 { grid-template-columns: repeat(3, 1fr); }
-    .photo-gallery img { width: 100%; height: 210px; object-fit: cover; display: block; }
-    .pick-date { background: linear-gradient(135deg, #0a1f4a 0%, #1040a0 45%, #0a1f4a 100%); padding: 72px 40px; position: relative; overflow: hidden; }
-    .pick-date::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); pointer-events: none; }
-    .date-grid { display: grid; grid-template-columns: 260px 1fr; gap: 64px; align-items: start; max-width: 1100px; margin: 0 auto; position: relative; }
-    .date-left h2 { font-size: 38px; font-weight: 700; color: var(--white); letter-spacing: 0.08em; margin-bottom: 14px; }
-    .date-price { margin-bottom: 20px; }
-    .date-price .price-from { font-size: 13px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 2px; }
-    .date-price .price-amount { font-family: 'Oswald', sans-serif; font-size: 32px; font-weight: 700; color: var(--white); }
-    .date-price .price-per { font-size: 14px; color: rgba(255,255,255,0.6); }
-    .date-payment { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 12px; }
-    .date-list { display: flex; flex-direction: column; }
-    .date-item { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.12); display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-    .date-item:first-child { border-top: 1px solid rgba(255,255,255,0.12); }
-    .date-item-left { flex: 1; }
-    .date-name { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 15px; color: var(--white); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
-    .date-when { font-size: 12px; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 6px; }
-    .date-when svg { opacity: 0.6; flex-shrink: 0; }
-    .date-register { font-family: 'Oswald', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.25); border-radius: 3px; padding: 6px 14px; white-space: nowrap; transition: all 0.2s; }
-    .date-register:hover { color: var(--white); border-color: var(--white); background: rgba(255,255,255,0.08); }
-    .bring-section { background: var(--navy-light); padding: 72px 40px; }
-    .bring-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 260px 1fr; gap: 48px; align-items: start; }
-    .bring-img { border-radius: 6px; overflow: hidden; border: 1px solid rgba(74,144,217,0.2); }
-    .bring-img img { width: 100%; height: 240px; object-fit: cover; display: block; }
-    .bring-content h3 { font-size: 26px; font-weight: 700; color: var(--white); margin-bottom: 24px; letter-spacing: 0.06em; }
-    .bring-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; counter-reset: bring-counter; }
-    .bring-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: #cdd6e0; line-height: 1.5; counter-increment: bring-counter; }
-    .bring-list li::before { content: counter(bring-counter) '.'; color: var(--accent); font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 14px; flex-shrink: 0; line-height: 1.5; min-width: 20px; }
-    .testimonials { background: var(--navy); padding: 72px 40px; }
-    .testi-inner { max-width: 1200px; margin: 0 auto; }
-    .testi-label { font-family: 'Oswald', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; display: block; text-align: center; margin-bottom: 10px; }
-    .testi-heading { font-size: clamp(26px, 3.5vw, 38px); font-weight: 700; color: var(--white); text-align: center; margin-bottom: 56px; }
-    .testi-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .testi-card { background: var(--navy-light); border-radius: 6px; padding: 32px 28px; border: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; }
-    .testi-stars { color: var(--gold); font-size: 18px; letter-spacing: 2px; margin-bottom: 18px; }
-    .testi-quote { font-style: italic; color: #d8e4ef; font-size: 15px; line-height: 1.7; flex: 1; margin-bottom: 20px; }
-    .testi-name { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; color: var(--grey); text-transform: uppercase; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; }
-    .testi-name span { color: var(--accent); }
-    .course-track { background: var(--navy-light); padding: 72px 40px; text-align: center; }
-    .track-inner { max-width: 1000px; margin: 0 auto; }
-    .track-label { font-family: 'Oswald', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; display: block; margin-bottom: 10px; }
-    .track-heading { font-size: clamp(24px, 3vw, 34px); font-weight: 700; color: var(--white); margin-bottom: 48px; }
-    .track-path { display: flex; align-items: stretch; justify-content: center; gap: 0; margin-bottom: 28px; }
-    .track-node { flex: 1; max-width: 280px; background: var(--navy); border: 1px solid rgba(74,144,217,0.2); border-radius: 8px; padding: 24px 20px; text-align: center; }
-    .track-node.active { background: rgba(26,115,232,0.12); border-color: var(--cta); box-shadow: 0 0 0 1px rgba(26,115,232,0.3); }
-    .track-badge { display: none; font-family: 'Oswald', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; color: var(--cta); text-transform: uppercase; margin-bottom: 8px; }
-    .track-node.active .track-badge { display: block; }
-    .track-node-title { font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: var(--grey); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
-    .track-node.active .track-node-title { color: var(--accent); }
-    .track-node-sub { font-size: 12px; color: #5a6a7a; line-height: 1.45; }
-    .track-node.active .track-node-sub { color: var(--grey); }
-    .track-arrow { display: flex; align-items: center; padding: 0 12px; color: rgba(74,144,217,0.5); font-size: 22px; flex-shrink: 0; align-self: center; }
-    .prereq-note { font-size: 14px; color: var(--grey); margin-top: 20px; }
-    .prereq-note a { color: var(--accent); }
-    .prereq-note a:hover { color: var(--white); }
-    .signup-banner { background: var(--cta); padding: 36px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .signup-banner h2 { font-size: clamp(22px, 3vw, 32px); color: var(--white); letter-spacing: 0.04em; }
-    .signup-banner .btn-outline { border-color: rgba(255,255,255,0.8); color: var(--white); padding: 12px 32px; }
-    .signup-banner .btn-outline:hover { background: rgba(255,255,255,0.15); border-color: var(--white); }
-    .cross-sell { background: var(--navy); padding: 48px 40px; border-top: 1px solid rgba(74,144,217,0.12); }
-    .cross-sell-inner { max-width: 600px; margin: 0 auto; display: flex; align-items: center; gap: 28px; }
-    .cross-sell-img { width: 110px; height: 80px; border-radius: 6px; overflow: hidden; flex-shrink: 0; border: 1px solid rgba(74,144,217,0.2); }
-    .cross-sell-img img { width: 100%; height: 100%; object-fit: cover; }
-    .cross-sell-label { font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; font-family: 'Oswald', sans-serif; margin-bottom: 4px; }
-    .cross-sell-title { font-family: 'Oswald', sans-serif; font-size: 19px; color: var(--white); text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
-    .cross-sell-link { font-size: 13px; color: var(--accent); text-transform: uppercase; font-family: 'Oswald', sans-serif; letter-spacing: 0.08em; transition: color 0.2s; }
-    .cross-sell-link:hover { color: var(--white); }
-    .review-strip { background: var(--navy); text-align: center; padding: 28px 40px; border-top: 1px solid rgba(255,255,255,0.06); }
-    .review-strip a { font-family: 'Oswald', sans-serif; font-size: 14px; color: var(--grey); letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
-    .review-strip a:hover { color: var(--white); }
-    footer { background: #07101a; padding: 72px 40px 0; border-top: 1px solid rgba(74,144,217,0.2); }
-    .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1.5fr 1fr; gap: 48px; padding-bottom: 56px; }
-    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-    .footer-logo img { height: 40px; }
-    .footer-tagline { font-style: italic; color: var(--grey); font-size: 15px; line-height: 1.6; max-width: 240px; }
-    .footer-col h4 { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 18px; }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 10px; }
-    .footer-col ul a { font-size: 14px; color: var(--grey); transition: color 0.2s; }
-    .footer-col ul a:hover { color: var(--white); }
-    .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--grey); }
-    .footer-contact-item span:first-child { color: var(--accent); flex-shrink: 0; margin-top: 1px; }
-    .social-icons { display: flex; gap: 14px; margin-top: 4px; }
-    .social-icon { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; color: var(--grey); transition: all 0.2s; }
-    .social-icon:hover { background: var(--cta); border-color: var(--cta); color: var(--white); }
-    .footer-bottom { max-width: 1200px; margin: 0 auto; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.07); text-align: center; font-size: 13px; color: #4a5a6a; }
-    @media (max-width: 900px) {
-      .nav-inner { padding: 0 20px; } .nav-links { display: none; } .hamburger { display: flex; } .mobile-menu { display: block; }
-      .course-hero { height: 280px; }
-      .course-intro, .skills-section, .bring-section, .testimonials, .course-track { padding-left: 20px; padding-right: 20px; }
-      .intro-header { flex-direction: column; gap: 20px; }
-      .skills-inner { grid-template-columns: 1fr; gap: 32px; }
-      .photo-gallery.cols-3 { grid-template-columns: repeat(2, 1fr); }
-      .pick-date { padding: 56px 20px; } .date-grid { grid-template-columns: 1fr; gap: 32px; }
-      .bring-inner { grid-template-columns: 1fr; } .bring-img { display: none; }
-      .testi-track { grid-template-columns: 1fr; }
-      .track-path { flex-direction: column; align-items: center; gap: 0; } .track-node { max-width: 100%; width: 100%; } .track-arrow { transform: rotate(90deg); padding: 8px 0; }
-      .signup-banner { flex-direction: column; text-align: center; padding: 32px 20px; }
-      .cross-sell-inner { flex-direction: column; text-align: center; gap: 16px; } .cross-sell-img { width: 100%; height: 120px; }
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; } footer { padding: 48px 20px 0; }
-    }
-    @media (max-width: 560px) {
-      .nav-logo img { height: 40px; } .course-hero { height: 220px; }
-      .photo-gallery.cols-3 { grid-template-columns: 1fr 1fr; } .photo-gallery img { height: 150px; }
-      .footer-grid { grid-template-columns: 1fr; gap: 32px; } .footer-tagline { max-width: 100%; }
-    }
-  </style>
+  <link rel="stylesheet" href="course.css" />
 </head>
 <body>
 
@@ -175,7 +16,13 @@
   <div class="nav-inner">
     <div class="nav-logo"><a href="index.html"><img src="images/logo-shield-color.png" alt="NTAC" /></a></div>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li><li><a href="#">Training</a></li><li><a href="#">Calendar</a></li><li><a href="#">Instructors</a></li><li><a href="#">About</a></li><li><a href="#">Gear</a></li><li><a href="#">Affiliates</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#">Training</a></li>
+      <li><a href="#">Calendar</a></li>
+      <li><a href="#">Instructors</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Gear</a></li>
+      <li><a href="#">Affiliates</a></li>
       <li class="nav-cta"><a href="#register" class="btn btn-primary btn-sm">Sign Up for a Class</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -183,11 +30,18 @@
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <ul>
-    <li><a href="index.html" onclick="closeMenu()">Home</a></li><li><a href="#" onclick="closeMenu()">Training</a></li><li><a href="#" onclick="closeMenu()">Calendar</a></li><li><a href="#" onclick="closeMenu()">Instructors</a></li><li><a href="#" onclick="closeMenu()">About</a></li><li><a href="#" onclick="closeMenu()">Gear</a></li><li><a href="#" onclick="closeMenu()">Affiliates</a></li>
+    <li><a href="index.html" onclick="closeMenu()">Home</a></li>
+    <li><a href="#" onclick="closeMenu()">Training</a></li>
+    <li><a href="#" onclick="closeMenu()">Calendar</a></li>
+    <li><a href="#" onclick="closeMenu()">Instructors</a></li>
+    <li><a href="#" onclick="closeMenu()">About</a></li>
+    <li><a href="#" onclick="closeMenu()">Gear</a></li>
+    <li><a href="#" onclick="closeMenu()">Affiliates</a></li>
   </ul>
   <a href="#register" class="btn btn-primary" onclick="closeMenu()">Sign Up for a Class</a>
 </div>
 
+<!-- HERO -->
 <div class="course-hero">
   <div class="course-hero-bg" style="background-image: url('images/rifle-proficiency.jpg'); background-position: center 30%;"></div>
   <div class="course-hero-overlay"></div>
@@ -197,46 +51,76 @@
   </div>
 </div>
 
+<!-- INTRO -->
 <section class="course-intro">
   <div class="intro-inner">
     <div class="intro-header">
       <h2 class="intro-headline">Stop Standing Still. Learn To Run Your Rifle.</h2>
       <a href="#register" class="btn btn-primary">Reserve My Spot</a>
     </div>
-    <p class="intro-sub">You can hit a target with your rifle, but can you do it while moving? This class teaches you what comes next. Our Rifle Proficiency Class is built around one core skill: handling your rifle effectively while you move. If you're not yet able to shoot beyond the static range, this is where you level up. Not quite there yet? Start with our <a href="beginner-rifle.html" style="color:var(--accent);">Beginner Rifle</a> course first.</p>
+    <p class="intro-sub">Rifle Proficiency takes the fundamentals you built in Beginner Rifle and puts them in motion. You'll work through dynamic drills, shooting on the move, rapid magazine changes, and engaging targets from multiple positions — all live fire, all coached. This is where your rifle skills stop being static and start being useful. Not quite ready? Start with <a href="beginner-rifle.html" style="color:var(--accent);">Beginner Rifle</a> first.</p>
     <div class="intro-photo">
       <img src="images/rifle-proficiency.jpg" alt="Rifle Proficiency Class" />
     </div>
   </div>
 </section>
 
-<section class="skills-section">
-  <div class="skills-inner">
-    <div class="skills-col">
-      <h3>Skills You'll Master:</h3>
-      <ul class="skills-list">
-        <li>Shooting accurately from standing, kneeling, seated, and prone positions</li>
-        <li>Moving with your rifle and staying on target</li>
-        <li>Transitioning between positions without losing accuracy</li>
-        <li>Magazine changes and reloads on the move</li>
-        <li>Building the muscle memory that holds up under pressure</li>
-      </ul>
+<!-- WHAT YOU'LL MASTER -->
+<section class="master-section">
+  <div class="master-inner">
+    <div class="section-header">
+      <span class="section-label">What You'll Master</span>
+      <h2 class="section-heading">Skills You'll Take With You</h2>
     </div>
-    <div class="body-col">
-      <h3>Ready to run your rifle?</h3>
-      <p>Most rifle shooters practice from a standing position, aiming at a stationary target. That's a good starting point, but not a practical skill set.</p>
-      <p>This course is built around one principle: good technique doesn't stop when you start moving. You'll train from multiple positions — standing, kneeling, seated, and prone — learning to transition between them while maintaining accuracy. Every drill adds complexity as your confidence grows, always under close instructor supervision on a controlled range.</p>
-      <p>By the end of the course you'll have a level of comfort and capability with your rifle that a static range simply can't teach you.</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">&#10003;</div>
+        <span class="skill-text">Shooting accurately while moving in multiple directions with a loaded rifle</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">&#10003;</div>
+        <span class="skill-text">Rapid magazine changes and reloads without breaking your shooting rhythm</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">&#10003;</div>
+        <span class="skill-text">Engaging multiple targets quickly and efficiently under pressure</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">&#10003;</div>
+        <span class="skill-text">Firing from prone, kneeling, and standing positions with speed and accuracy</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">&#10003;</div>
+        <span class="skill-text">Building muscle memory through repetitive live fire drills with instructor feedback</span>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="photo-gallery cols-3">
-  <img src="images/rifle-proficiency.jpg" alt="Rifle Proficiency Training" />
-  <img src="images/defensive-rifle.jpg" alt="Rifle Training" />
-  <img src="images/beginner-rifle.jpg" alt="NTAC Rifle Class" />
-</div>
+<!-- ABOUT THIS COURSE -->
+<section class="about-section">
+  <div class="about-inner">
+    <div class="about-col">
+      <span class="about-col-label">Who This Is For</span>
+      <h3>Ready To Move Beyond the Static Range?</h3>
+      <p>This course is for shooters who have completed Beginner Rifle and are comfortable with the fundamentals. If you can safely handle your rifle and hit a stationary target, you're ready to take the next step.</p>
+      <p>Rifle Proficiency is where good shooters get better — and static shooters start moving.</p>
+    </div>
+    <div class="about-col">
+      <span class="about-col-label">What to Expect</span>
+      <h3>Dynamic Drills From Day One.</h3>
+      <ul>
+        <li>Movement-based live fire drills begin in the first session</li>
+        <li>Coaching on technique for every position and drill</li>
+        <li>Timed scenarios designed to build speed without sacrificing accuracy</li>
+        <li>Immediate, practical feedback from NTAC instructors</li>
+        <li>Plan on 300–400 rounds — come ready to work</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
+<!-- PICK YOUR DATE -->
 <section class="pick-date" id="register">
   <div class="date-grid">
     <div class="date-left">
@@ -249,91 +133,131 @@
       <p class="date-payment">All major credit cards accepted &nbsp;·&nbsp; Secure online registration</p>
     </div>
     <div class="date-list">
-      <div class="date-item"><div class="date-item-left"><div class="date-name">Rifle Proficiency: May 16, 2026 &nbsp;|&nbsp; Layton</div><div class="date-when"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 05-16-2026 &nbsp;·&nbsp; 9:30 am</div></div><a href="#" class="date-register">Register</a></div>
-      <div class="date-item"><div class="date-item-left"><div class="date-name">Rifle Proficiency: May 20–21, 2026 &nbsp;|&nbsp; Orem RG</div><div class="date-when"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 05-20-2026 &nbsp;·&nbsp; 5:30 pm</div></div><a href="#" class="date-register">Register</a></div>
-      <div class="date-item"><div class="date-item-left"><div class="date-name">Rifle Proficiency: Jul 18, 2026 &nbsp;|&nbsp; Tooele</div><div class="date-when"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 07-18-2026 &nbsp;·&nbsp; 9:30 am</div></div><a href="#" class="date-register">Register</a></div>
-      <div class="date-item"><div class="date-item-left"><div class="date-name">Rifle Proficiency: Aug 6, 2026 &nbsp;|&nbsp; Layton</div><div class="date-when"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 08-06-2026 &nbsp;·&nbsp; 9:30 am</div></div><a href="#" class="date-register">Register</a></div>
-      <div class="date-item"><div class="date-item-left"><div class="date-name">Rifle Proficiency: Sep 2–3, 2026 &nbsp;|&nbsp; Murray</div><div class="date-when"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 09-02-2026 &nbsp;·&nbsp; 5:00 pm</div></div><a href="#" class="date-register">Register</a></div>
+      <div class="date-item">
+        <div class="date-item-left">
+          <div class="date-name">Rifle Proficiency: May 16, 2026 &nbsp;|&nbsp; Layton</div>
+          <div class="date-when"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 05-16-2026 &nbsp;·&nbsp; 9:30 am</div>
+        </div>
+        <a href="#" class="date-register">Register</a>
+      </div>
+      <div class="date-item">
+        <div class="date-item-left">
+          <div class="date-name">Rifle Proficiency: May 20–21, 2026 &nbsp;|&nbsp; Orem RG</div>
+          <div class="date-when"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 05-20-2026 &nbsp;·&nbsp; 5:30 pm</div>
+        </div>
+        <a href="#" class="date-register">Register</a>
+      </div>
+      <div class="date-item">
+        <div class="date-item-left">
+          <div class="date-name">Rifle Proficiency: Jul 18, 2026 &nbsp;|&nbsp; Tooele</div>
+          <div class="date-when"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 07-18-2026 &nbsp;·&nbsp; 9:30 am</div>
+        </div>
+        <a href="#" class="date-register">Register</a>
+      </div>
+      <div class="date-item">
+        <div class="date-item-left">
+          <div class="date-name">Rifle Proficiency: Aug 6, 2026 &nbsp;|&nbsp; Layton</div>
+          <div class="date-when"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 08-06-2026 &nbsp;·&nbsp; 9:30 am</div>
+        </div>
+        <a href="#" class="date-register">Register</a>
+      </div>
+      <div class="date-item">
+        <div class="date-item-left">
+          <div class="date-name">Rifle Proficiency: Sep 2–3, 2026 &nbsp;|&nbsp; Murray</div>
+          <div class="date-when"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 09-02-2026 &nbsp;·&nbsp; 5:00 pm</div>
+        </div>
+        <a href="#" class="date-register">Register</a>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- WHAT TO BRING -->
 <section class="bring-section">
-  <div class="bring-inner">
-    <div class="bring-img"><img src="images/other-1.jpg" alt="What to Bring" /></div>
-    <div class="bring-content">
-      <h3>What to Bring</h3>
-      <ul class="bring-list">
-        <li>Properly functioning rifle/carbine with a quality sling</li>
-        <li>At least 3 magazines for your rifle</li>
-        <li>Minimum of 300–400 rounds of practice ammo (NOT armor piercing or steel core)</li>
-        <li>Eye protection</li>
-        <li>Electronic hearing protection</li>
-        <li>Closed-toe shoes, long pants, high neckline shirt</li>
-      </ul>
-      <a href="#" class="btn btn-primary">Don't Have Gear? Borrow Ours!</a>
+  <div class="bring-card">
+    <h3>What to Bring</h3>
+    <ul class="bring-list">
+      <li>Rifle or carbine with a sling</li>
+      <li>At least 3 magazines for your rifle</li>
+      <li>300–400 rounds — no armor-piercing or steel core ammo</li>
+      <li>Eye protection</li>
+      <li>Hearing protection</li>
+      <li>Closed-toe shoes, long pants, high neckline shirt</li>
+    </ul>
+    <div class="bring-cta">
+      <a href="#" class="btn btn-primary">Don't Have Equipment? Rent Ours!</a>
     </div>
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
 <section class="testimonials">
   <div class="testi-inner">
-    <span class="testi-label">Testimonials</span>
-    <h2 class="testi-heading">What Our Students Say</h2>
-    <p style="text-align:center; color:var(--grey); font-size:14px; margin-top:-40px; margin-bottom:48px;">Real stories from real people who started exactly where you are.</p>
-    <div class="testi-track">
+    <div class="section-header">
+      <span class="section-label">Testimonials</span>
+      <h2 class="section-heading">What Our Students Say</h2>
+    </div>
+    <p class="testi-subhead">Real stories from real people who started exactly where you are.</p>
+    <div class="testi-grid">
       <div class="testi-card">
         <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="testi-quote">"The training was awesome! I'm really pleased with the improvement I made in such a short time. My groups got significantly smaller."</p>
+        <p class="testi-quote">"Todd pushed me in ways I didn't expect. By day two I was running drills I couldn't have imagined doing before. The instruction is high quality, the pace is right, and I came home a noticeably better shooter."</p>
         <div class="testi-name">Lisa &nbsp;·&nbsp; <span>Murray, UT</span></div>
       </div>
       <div class="testi-card">
         <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="testi-quote">"Took the Rifle Proficiency class. Todd and Matthew weren't just instructors, they're pros who actually like what they teach. No fluff, no wasted time — just sharp knowledge and hands-on guidance that made a huge difference. I left more confident, more capable, and already planning my next class."</p>
+        <p class="testi-quote">"This is the real deal. Not a YouTube course, not a range day with buddies — actual structured training with someone who knows what he's doing. My mag changes alone improved dramatically."</p>
         <div class="testi-name">Brandon &nbsp;·&nbsp; <span>Bountiful, UT</span></div>
       </div>
       <div class="testi-card">
         <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="testi-quote">"I really enjoyed the class. The instructors were friendly and knowledgeable."</p>
+        <p class="testi-quote">"NTAC doesn't waste your time. Every drill had a purpose, every piece of feedback was actionable. Signed up for Defensive Rifle before the second day was even over."</p>
         <div class="testi-name">Tom &nbsp;·&nbsp; <span>Orem, UT</span></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- WHERE DOES THIS FIT -->
 <section class="course-track">
   <div class="track-inner">
-    <span class="track-label">Course Path</span>
-    <h2 class="track-heading">Where Does This Fit?</h2>
+    <div class="section-header">
+      <span class="section-label">Course Path</span>
+      <h2 class="section-heading">Where Does This Fit?</h2>
+    </div>
     <div class="track-path">
       <div class="track-node">
         <div class="track-node-title">Beginner Rifle</div>
-        <div class="track-node-sub">Starting point<br>Must complete first</div>
+        <div class="track-node-sub">Starting point<br>Foundation skills</div>
       </div>
       <div class="track-arrow">&#8594;</div>
       <div class="track-node active">
         <div class="track-badge">&#9733; You Are Here</div>
         <div class="track-node-title">Rifle Proficiency</div>
-        <div class="track-node-sub">Intermediate<br>Dynamic shooting skills</div>
+        <div class="track-node-sub">Intermediate<br>Must complete first</div>
       </div>
       <div class="track-arrow">&#8594;</div>
       <div class="track-node">
         <div class="track-node-title">Defensive Rifle</div>
-        <div class="track-node-sub">Your next step<br>Real-world scenarios</div>
+        <div class="track-node-sub">Advanced<br>Real-world scenarios</div>
       </div>
     </div>
     <p class="prereq-note">You must attend <a href="beginner-rifle.html">Beginner Rifle</a> before taking this class.</p>
   </div>
 </section>
 
+<!-- SIGNUP BANNER -->
 <div class="signup-banner">
   <h2>Sign up for this class</h2>
   <a href="#register" class="btn btn-outline">Register Now</a>
 </div>
 
+<!-- CROSS-SELL -->
 <section class="cross-sell">
   <div class="cross-sell-inner">
-    <div class="cross-sell-img"><img src="images/beginner-handgun.jpg" alt="Beginner Handgun" /></div>
+    <div class="cross-sell-img">
+      <img src="images/beginner-handgun.jpg" alt="Beginner Handgun" />
+    </div>
     <div>
       <div class="cross-sell-label">Also Learn To Use A Handgun</div>
       <div class="cross-sell-title">Beginner Handgun Class</div>
@@ -346,10 +270,36 @@
 
 <footer>
   <div class="footer-grid">
-    <div><div class="footer-logo"><img src="images/logo-shield-color.png" alt="NTAC" /></div><p class="footer-tagline">Real training. Real results.<br><br>Nielsen Training and Consulting — Utah's premier tactical firearms instruction organization.</p></div>
-    <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="#">Training</a></li><li><a href="#">Calendar</a></li><li><a href="#">Instructors</a></li><li><a href="#">About</a></li><li><a href="#">Gear</a></li><li><a href="#">Affiliates</a></li></ul></div>
-    <div class="footer-col"><h4>Contact</h4><div class="footer-contact-item"><span>&#9679;</span><span>Utah, United States</span></div><div class="footer-contact-item"><span>&#9679;</span><a href="tel:3854012878">385.401.2878</a></div><div class="footer-contact-item"><span>&#9679;</span><a href="mailto:info@nielsentraining.com">info@nielsentraining.com</a></div></div>
-    <div class="footer-col"><h4>Follow Us</h4><div class="social-icons"><a href="#" class="social-icon" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a><a href="#" class="social-icon" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="#" class="social-icon" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg></a></div></div>
+    <div>
+      <div class="footer-logo"><img src="images/logo-shield-color.png" alt="NTAC" /></div>
+      <p class="footer-tagline">Real training. Real results.<br><br>Nielsen Training and Consulting — Utah's premier tactical firearms instruction organization.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Training</a></li>
+        <li><a href="#">Calendar</a></li>
+        <li><a href="#">Instructors</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Gear</a></li>
+        <li><a href="#">Affiliates</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <div class="footer-contact-item"><span>&#9679;</span><span>Utah, United States</span></div>
+      <div class="footer-contact-item"><span>&#9679;</span><a href="tel:3854012878">385.401.2878</a></div>
+      <div class="footer-contact-item"><span>&#9679;</span><a href="mailto:info@nielsentraining.com">info@nielsentraining.com</a></div>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#" class="social-icon" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="#" class="social-icon" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" class="social-icon" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg></a>
+      </div>
+    </div>
   </div>
   <div class="footer-bottom">Nielsen Training and Consulting &copy; 2026. All Rights Reserved.</div>
 </footer>
@@ -357,8 +307,14 @@
 <script>
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
-  function closeMenu() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
 </script>
 </body>
 </html>

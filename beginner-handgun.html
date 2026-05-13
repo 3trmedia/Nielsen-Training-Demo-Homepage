@@ -8,248 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --navy:       #0d1b2a;
-      --navy-light: #142032;
-      --navy-mid:   #1a2a3a;
-      --accent:     #4a90d9;
-      --cta:        #1a73e8;
-      --cta-hover:  #1558b0;
-      --white:      #ffffff;
-      --grey:       #b0bec5;
-      --gold:       #f5c518;
-    }
-    html { scroll-behavior: smooth; }
-    body { background: var(--navy); color: var(--white); font-family: 'Roboto', sans-serif; font-size: 16px; line-height: 1.65; }
-    h1, h2, h3, h4 { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.04em; }
-    a { color: inherit; text-decoration: none; }
-
-    .btn { display: inline-block; padding: 14px 28px; font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 3px; cursor: pointer; transition: all 0.2s ease; border: none; }
-    .btn-primary { background: var(--cta); color: var(--white); border: 2px solid var(--cta); }
-    .btn-primary:hover { background: var(--cta-hover); border-color: var(--cta-hover); transform: translateY(-1px); }
-    .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.7); }
-    .btn-outline:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
-    .btn-sm { padding: 10px 20px; font-size: 13px; }
-    .btn-accent { background: transparent; color: var(--white); border: 2px solid var(--white); font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 24px; border-radius: 3px; transition: all 0.2s; display: inline-block; }
-    .btn-accent:hover { background: rgba(255,255,255,0.15); }
-
-    /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: rgba(13,27,42,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(74,144,217,0.2); }
-    .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 40px; height: 70px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo img { height: 48px; width: auto; display: block; }
-    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
-    .nav-links a { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); transition: color 0.2s; }
-    .nav-links a:hover { color: var(--white); }
-    .nav-cta { margin-left: 8px; }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
-    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s ease; }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .mobile-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; background: rgba(7,16,26,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(74,144,217,0.2); z-index: 199; padding: 24px 24px 32px; transform: translateY(-100%); opacity: 0; transition: transform 0.3s ease, opacity 0.3s ease; }
-    .mobile-menu.open { transform: translateY(0); opacity: 1; }
-    .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
-    .mobile-menu ul a { display: block; font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); transition: color 0.2s; }
-    .mobile-menu ul a:hover { color: var(--white); }
-    .mobile-menu .btn { width: 100%; text-align: center; }
-
-    /* COURSE HERO BANNER */
-    .course-hero { position: relative; height: 380px; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; margin-top: 70px; }
-    .course-hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center 25%; filter: brightness(0.38); }
-    .course-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(13,27,42,0.35) 0%, rgba(13,27,42,0.65) 100%); }
-    .course-hero-content { position: relative; z-index: 2; }
-    .course-hero-content h1 { font-size: clamp(28px, 5vw, 54px); font-weight: 700; color: var(--white); letter-spacing: 0.12em; margin-bottom: 18px; }
-    .course-hero-accent { width: 80px; height: 3px; background: var(--accent); margin: 0 auto; }
-
-    /* INTRO */
-    .course-intro { background: var(--navy); padding: 72px 40px 56px; }
-    .intro-inner { max-width: 1200px; margin: 0 auto; }
-    .intro-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 20px; }
-    .intro-headline { font-size: clamp(26px, 3.8vw, 46px); font-weight: 700; color: var(--white); line-height: 1.1; max-width: 660px; }
-    .intro-sub { font-size: 16px; color: var(--grey); line-height: 1.75; max-width: 780px; margin-bottom: 40px; }
-    .intro-photo { border-radius: 8px; overflow: hidden; border: 1px solid rgba(74,144,217,0.2); }
-    .intro-photo img { width: 100%; max-height: 500px; object-fit: cover; object-position: center 20%; display: block; }
-
-    /* VIDEO + SKILLS */
-    .video-skills { background: var(--navy-light); padding: 72px 40px; }
-    .video-skills-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
-    .vs-video-card { border-radius: 8px; overflow: hidden; border: 1px solid rgba(74,144,217,0.3); box-shadow: 0 8px 40px rgba(0,0,0,0.4); }
-    .vs-video-header { background: var(--navy-mid); padding: 14px 18px; border-bottom: 1px solid rgba(74,144,217,0.2); }
-    .vs-video-header strong { display: block; font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; color: var(--white); text-transform: uppercase; }
-    .vs-video-header span { font-size: 11px; color: var(--grey); }
-    .vs-video-thumb { position: relative; background: #08111a; overflow: hidden; aspect-ratio: 16/9; cursor: pointer; }
-    .vs-video-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: 0.75; transition: opacity 0.3s; }
-    .vs-video-thumb:hover img { opacity: 0.5; }
-    .vs-play { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
-    .vs-play-icon { width: 66px; height: 66px; background: rgba(26,115,232,0.92); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.2s; box-shadow: 0 4px 24px rgba(26,115,232,0.5); }
-    .vs-video-thumb:hover .vs-play-icon { background: var(--cta); transform: scale(1.1); }
-    .vs-play-icon svg { margin-left: 4px; }
-    .vs-play-caption { font-family: 'Oswald', sans-serif; font-size: 11px; letter-spacing: 0.12em; color: rgba(255,255,255,0.75); text-transform: uppercase; }
-    .vs-skills h3 { font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 24px; letter-spacing: 0.06em; }
-    .vs-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
-    .vs-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: #cdd6e0; line-height: 1.5; }
-    .vs-list li::before { content: '✓'; color: var(--accent); font-size: 14px; font-weight: 700; flex-shrink: 0; line-height: 1.5; }
-
-    /* BODY COPY */
-    .body-copy { background: var(--navy-light); padding: 0 40px 72px; }
-    .body-copy-inner { max-width: 1200px; margin: 0 auto; }
-    .body-copy h2 { font-size: clamp(22px, 3vw, 32px); color: var(--white); margin-bottom: 24px; }
-    .body-copy p { font-size: 15.5px; color: #cdd6e0; line-height: 1.8; margin-bottom: 16px; max-width: 860px; }
-
-    /* PHOTO GALLERY */
-    .photo-gallery { display: grid; gap: 6px; background: var(--navy); padding: 0; }
-    .photo-gallery.cols-3 { grid-template-columns: repeat(3, 1fr); }
-    .photo-gallery.cols-4 { grid-template-columns: repeat(4, 1fr); }
-    .photo-gallery img { width: 100%; height: 210px; object-fit: cover; display: block; }
-
-    /* PICK YOUR DATE */
-    .pick-date { background: linear-gradient(135deg, #0a1f4a 0%, #1040a0 45%, #0a1f4a 100%); padding: 72px 40px; position: relative; overflow: hidden; }
-    .pick-date::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); pointer-events: none; }
-    .date-grid { display: grid; grid-template-columns: 260px 1fr; gap: 64px; align-items: start; max-width: 1100px; margin: 0 auto; position: relative; }
-    .date-left h2 { font-size: 38px; font-weight: 700; color: var(--white); letter-spacing: 0.08em; margin-bottom: 14px; }
-    .date-price { margin-bottom: 20px; }
-    .date-price .price-from { font-size: 13px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 2px; }
-    .date-price .price-amount { font-family: 'Oswald', sans-serif; font-size: 32px; font-weight: 700; color: var(--white); }
-    .date-price .price-per { font-size: 14px; color: rgba(255,255,255,0.6); }
-    .date-payment { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 12px; }
-    .date-list { display: flex; flex-direction: column; }
-    .date-item { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.12); display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-    .date-item:first-child { border-top: 1px solid rgba(255,255,255,0.12); }
-    .date-item-left { flex: 1; }
-    .date-name { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 15px; color: var(--white); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
-    .date-when { font-size: 12px; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 6px; }
-    .date-when svg { opacity: 0.6; flex-shrink: 0; }
-    .date-register { font-family: 'Oswald', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.25); border-radius: 3px; padding: 6px 14px; white-space: nowrap; transition: all 0.2s; }
-    .date-register:hover { color: var(--white); border-color: var(--white); background: rgba(255,255,255,0.08); }
-
-    /* WHAT TO BRING */
-    .bring-section { background: var(--navy-light); padding: 72px 40px; }
-    .bring-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 260px 1fr; gap: 48px; align-items: start; }
-    .bring-img { border-radius: 6px; overflow: hidden; border: 1px solid rgba(74,144,217,0.2); }
-    .bring-img img { width: 100%; height: 240px; object-fit: cover; display: block; }
-    .bring-content h3 { font-size: 26px; font-weight: 700; color: var(--white); margin-bottom: 24px; letter-spacing: 0.06em; }
-    .bring-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; counter-reset: bring-counter; }
-    .bring-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: #cdd6e0; line-height: 1.5; counter-increment: bring-counter; }
-    .bring-list li::before { content: counter(bring-counter) '.'; color: var(--accent); font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 14px; flex-shrink: 0; line-height: 1.5; min-width: 20px; }
-
-    /* TESTIMONIALS */
-    .testimonials { background: var(--navy); padding: 72px 40px; }
-    .testi-inner { max-width: 1200px; margin: 0 auto; }
-    .testi-label { font-family: 'Oswald', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; display: block; text-align: center; margin-bottom: 10px; }
-    .testi-heading { font-size: clamp(26px, 3.5vw, 38px); font-weight: 700; color: var(--white); text-align: center; margin-bottom: 56px; }
-    .testi-carousel { position: relative; }
-    .testi-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .testi-card { background: var(--navy-light); border-radius: 6px; padding: 32px 28px; border: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; }
-    .testi-stars { color: var(--gold); font-size: 18px; letter-spacing: 2px; margin-bottom: 18px; }
-    .testi-quote { font-style: italic; color: #d8e4ef; font-size: 15px; line-height: 1.7; flex: 1; margin-bottom: 20px; }
-    .testi-name { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; color: var(--grey); text-transform: uppercase; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; }
-    .testi-name span { color: var(--accent); }
-
-    /* COURSE TRACK */
-    .course-track { background: var(--navy-light); padding: 72px 40px; text-align: center; }
-    .track-inner { max-width: 1000px; margin: 0 auto; }
-    .track-label { font-family: 'Oswald', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; display: block; margin-bottom: 10px; }
-    .track-heading { font-size: clamp(24px, 3vw, 34px); font-weight: 700; color: var(--white); margin-bottom: 48px; }
-    .track-path { display: flex; align-items: stretch; justify-content: center; gap: 0; margin-bottom: 28px; }
-    .track-node { flex: 1; max-width: 280px; background: var(--navy); border: 1px solid rgba(74,144,217,0.2); border-radius: 8px; padding: 24px 20px; text-align: center; transition: all 0.2s; }
-    .track-node.active { background: rgba(26,115,232,0.12); border-color: var(--cta); box-shadow: 0 0 0 1px rgba(26,115,232,0.3); }
-    .track-badge { display: none; font-family: 'Oswald', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; color: var(--cta); text-transform: uppercase; margin-bottom: 8px; }
-    .track-node.active .track-badge { display: block; }
-    .track-node-title { font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: var(--grey); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
-    .track-node.active .track-node-title { color: var(--accent); }
-    .track-node-sub { font-size: 12px; color: #5a6a7a; line-height: 1.45; }
-    .track-node.active .track-node-sub { color: var(--grey); }
-    .track-arrow { display: flex; align-items: center; padding: 0 12px; color: rgba(74,144,217,0.5); font-size: 22px; flex-shrink: 0; align-self: center; }
-    .prereq-note { font-size: 14px; color: var(--grey); margin-top: 20px; }
-    .prereq-note a { color: var(--accent); }
-    .prereq-note a:hover { color: var(--white); }
-    .permit-link { margin-top: 16px; font-size: 14px; color: var(--accent); font-family: 'Oswald', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; display: inline-block; }
-    .permit-link:hover { color: var(--white); }
-
-    /* SIGNUP BANNER */
-    .signup-banner { background: var(--cta); padding: 36px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .signup-banner h2 { font-size: clamp(22px, 3vw, 32px); color: var(--white); letter-spacing: 0.04em; }
-    .signup-banner .btn-outline { border-color: rgba(255,255,255,0.8); color: var(--white); padding: 12px 32px; }
-    .signup-banner .btn-outline:hover { background: rgba(255,255,255,0.15); border-color: var(--white); }
-
-    /* CROSS-SELL */
-    .cross-sell { background: var(--navy); padding: 48px 40px; border-top: 1px solid rgba(74,144,217,0.12); }
-    .cross-sell-inner { max-width: 600px; margin: 0 auto; display: flex; align-items: center; gap: 28px; }
-    .cross-sell-img { width: 110px; height: 80px; border-radius: 6px; overflow: hidden; flex-shrink: 0; border: 1px solid rgba(74,144,217,0.2); }
-    .cross-sell-img img { width: 100%; height: 100%; object-fit: cover; }
-    .cross-sell-label { font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; font-family: 'Oswald', sans-serif; margin-bottom: 4px; }
-    .cross-sell-title { font-family: 'Oswald', sans-serif; font-size: 19px; color: var(--white); text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
-    .cross-sell-link { font-size: 13px; color: var(--accent); text-transform: uppercase; font-family: 'Oswald', sans-serif; letter-spacing: 0.08em; transition: color 0.2s; }
-    .cross-sell-link:hover { color: var(--white); }
-
-    /* REVIEW STRIP */
-    .review-strip { background: var(--navy); text-align: center; padding: 28px 40px; border-top: 1px solid rgba(255,255,255,0.06); }
-    .review-strip a { font-family: 'Oswald', sans-serif; font-size: 14px; color: var(--grey); letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
-    .review-strip a:hover { color: var(--white); }
-
-    /* FOOTER */
-    footer { background: #07101a; padding: 72px 40px 0; border-top: 1px solid rgba(74,144,217,0.2); }
-    .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1.5fr 1fr; gap: 48px; padding-bottom: 56px; }
-    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-    .footer-logo img { height: 40px; }
-    .footer-tagline { font-style: italic; color: var(--grey); font-size: 15px; line-height: 1.6; max-width: 240px; }
-    .footer-col h4 { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 18px; }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 10px; }
-    .footer-col ul a { font-size: 14px; color: var(--grey); transition: color 0.2s; }
-    .footer-col ul a:hover { color: var(--white); }
-    .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--grey); }
-    .footer-contact-item span:first-child { color: var(--accent); flex-shrink: 0; margin-top: 1px; }
-    .social-icons { display: flex; gap: 14px; margin-top: 4px; }
-    .social-icon { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; color: var(--grey); transition: all 0.2s; }
-    .social-icon:hover { background: var(--cta); border-color: var(--cta); color: var(--white); }
-    .footer-bottom { max-width: 1200px; margin: 0 auto; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.07); text-align: center; font-size: 13px; color: #4a5a6a; }
-
-    /* MOBILE */
-    @media (max-width: 900px) {
-      .nav-inner { padding: 0 20px; }
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      .mobile-menu { display: block; }
-      .course-hero { height: 280px; }
-      .course-intro, .video-skills, .body-copy, .bring-section, .testimonials, .course-track { padding-left: 20px; padding-right: 20px; }
-      .intro-header { flex-direction: column; gap: 20px; }
-      .video-skills-inner { grid-template-columns: 1fr; gap: 32px; }
-      .photo-gallery.cols-3, .photo-gallery.cols-4 { grid-template-columns: repeat(2, 1fr); }
-      .pick-date { padding: 56px 20px; }
-      .date-grid { grid-template-columns: 1fr; gap: 32px; }
-      .bring-inner { grid-template-columns: 1fr; }
-      .bring-img { display: none; }
-      .testi-track { grid-template-columns: 1fr; }
-      .track-path { flex-direction: column; align-items: center; gap: 0; }
-      .track-node { max-width: 100%; width: 100%; }
-      .track-arrow { transform: rotate(90deg); padding: 8px 0; }
-      .signup-banner { flex-direction: column; text-align: center; padding: 32px 20px; }
-      .cross-sell-inner { flex-direction: column; text-align: center; gap: 16px; }
-      .cross-sell-img { width: 100%; height: 120px; }
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-      footer { padding: 48px 20px 0; }
-    }
-    @media (max-width: 560px) {
-      .nav-logo img { height: 40px; }
-      .course-hero { height: 220px; }
-      .photo-gallery.cols-3, .photo-gallery.cols-4 { grid-template-columns: 1fr 1fr; }
-      .photo-gallery img { height: 150px; }
-      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-      .footer-tagline { max-width: 100%; }
-    }
-  </style>
+  <link rel="stylesheet" href="course.css" />
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <div class="nav-logo">
-      <a href="index.html"><img src="images/logo-shield-color.png" alt="NTAC" /></a>
-    </div>
+    <div class="nav-logo"><a href="index.html"><img src="images/logo-shield-color.png" alt="NTAC" /></a></div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="#">Training</a></li>
@@ -276,7 +41,7 @@
   <a href="#register" class="btn btn-primary" onclick="closeMenu()">Sign Up for a Class</a>
 </div>
 
-<!-- COURSE HERO -->
+<!-- HERO -->
 <div class="course-hero">
   <div class="course-hero-bg" style="background-image: url('images/beginner-handgun.jpg'); background-position: center 15%;"></div>
   <div class="course-hero-overlay"></div>
@@ -300,52 +65,60 @@
   </div>
 </section>
 
-<!-- VIDEO + SKILLS -->
-<section class="video-skills">
-  <div class="video-skills-inner">
-    <div class="vs-video-card">
-      <div class="vs-video-header">
-        <strong>Beginner Handgun Class Overview</strong>
-        <span>Nielsen Training and Consulting</span>
-      </div>
-      <div class="vs-video-thumb" id="videoThumb" onclick="playVideo()">
-        <img src="images/about-video-thumb.jpg" alt="Beginner Handgun Overview" />
-        <div class="vs-play">
-          <div class="vs-play-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-          <span class="vs-play-caption">Watch on YouTube</span>
-        </div>
-      </div>
+<!-- WHAT YOU'LL MASTER -->
+<section class="master-section">
+  <div class="master-inner">
+    <div class="section-header">
+      <span class="section-label">What You'll Master</span>
+      <h2 class="section-heading">Skills You'll Take With You</h2>
     </div>
-    <div class="vs-skills">
-      <h3>Handgun Skills You'll Master</h3>
-      <ul class="vs-list">
-        <li>Fundamental firearm safety — the habits that keep everyone safe</li>
-        <li>Grip, stance, and trigger control that actually works</li>
-        <li>How to use your sights and aim with confidence</li>
-        <li>Defensive targeting — where to aim and why</li>
-        <li>The basic legal principles of armed self-defense in Utah</li>
-      </ul>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">&#10003;</div>
+        <span class="skill-text">Fundamental firearm safety — the habits that keep everyone safe on and off the range</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">&#10003;</div>
+        <span class="skill-text">Grip, stance, and trigger control that actually produces accurate shots</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">&#10003;</div>
+        <span class="skill-text">How to use your sights and aim with real confidence at the target</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">&#10003;</div>
+        <span class="skill-text">Defensive targeting — where to aim and why it matters in a real scenario</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">&#10003;</div>
+        <span class="skill-text">The basic legal principles of armed self-defense in the state of Utah</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- BODY COPY -->
-<div class="body-copy">
-  <div class="body-copy-inner">
-    <h2>New to shooting? You're in the right place.</h2>
-    <p>This course is built for anyone who wants to feel genuinely comfortable with a firearm, not just learn how to pull a trigger. Before you ever step onto the range, we start in the classroom. Our instructors walk you through the parts of your gun, how it works, and how to handle it safely so you can learn without any pressure.</p>
-    <p>By the time you move to live fire, you already know your gun. You'll work on grip, stance, and aim with hands-on coaching to help you build real accuracy and consistency. Most students walk in nervous and leave feeling proud of what they accomplished. That's exactly what the beginner handgun course is designed to do.</p>
+<!-- ABOUT THIS COURSE -->
+<section class="about-section">
+  <div class="about-inner">
+    <div class="about-col">
+      <span class="about-col-label">Who This Is For</span>
+      <h3>Starting From Zero? You're In the Right Place.</h3>
+      <p>Anyone starting from zero. You don't need prior experience or even your own gun. If firearms make you nervous, that's exactly the kind of person this class was designed for.</p>
+      <p>Patty and the NTAC instructors have trained hundreds of first-time shooters. The zero-judgment atmosphere is real — ask every question you have.</p>
+    </div>
+    <div class="about-col">
+      <span class="about-col-label">What to Expect</span>
+      <h3>Classroom First. Range Second. Leave Confident.</h3>
+      <ul>
+        <li>We start in the classroom before you ever touch a firearm</li>
+        <li>You'll learn how your handgun works and how to handle it safely under zero pressure</li>
+        <li>Then you move to live fire with hands-on coaching for every shot</li>
+        <li>Most students arrive nervous and leave proud of what they accomplished</li>
+        <li>Class runs approximately half a day — no experience required to register</li>
+      </ul>
+    </div>
   </div>
-</div>
-
-<!-- PHOTO GALLERY -->
-<div class="photo-gallery cols-3">
-  <img src="images/beginner-handgun.jpg" alt="Beginner Handgun Training" />
-  <img src="images/community.jpg" alt="NTAC Class" />
-  <img src="images/handgun-proficiency.jpg" alt="Handgun Training" />
-</div>
+</section>
 
 <!-- PICK YOUR DATE -->
 <section class="pick-date" id="register">
@@ -408,20 +181,17 @@
 
 <!-- WHAT TO BRING -->
 <section class="bring-section">
-  <div class="bring-inner">
-    <div class="bring-img">
-      <img src="images/community.jpg" alt="What to Bring" />
-    </div>
-    <div class="bring-content">
-      <h3>What to Bring</h3>
-      <ul class="bring-list">
-        <li>Properly functioning handgun</li>
-        <li>At least 2 magazines for your handgun (holding a capacity of 20+ rounds)</li>
-        <li>Minimum of 150 rounds of practice ammo</li>
-        <li>Eye protection</li>
-        <li>Electronic hearing protection</li>
-        <li>Closed-toe shoes, long pants, high neckline shirt</li>
-      </ul>
+  <div class="bring-card">
+    <h3>What to Bring</h3>
+    <ul class="bring-list">
+      <li>Properly functioning handgun</li>
+      <li>At least 2 magazines (holding 20+ rounds total capacity)</li>
+      <li>Minimum of 150 rounds of practice ammo</li>
+      <li>Eye protection</li>
+      <li>Electronic hearing protection</li>
+      <li>Closed-toe shoes, long pants, high neckline shirt</li>
+    </ul>
+    <div class="bring-cta">
       <a href="#" class="btn btn-primary">Don't Have Gear? Borrow Ours!</a>
     </div>
   </div>
@@ -430,10 +200,12 @@
 <!-- TESTIMONIALS -->
 <section class="testimonials">
   <div class="testi-inner">
-    <span class="testi-label">Testimonials</span>
-    <h2 class="testi-heading">What Our Students Say</h2>
-    <p style="text-align:center; color:var(--grey); font-size:14px; margin-top:-40px; margin-bottom:48px;">Real stories from real people who started exactly where you are.</p>
-    <div class="testi-track">
+    <div class="section-header">
+      <span class="section-label">Testimonials</span>
+      <h2 class="section-heading">What Our Students Say</h2>
+    </div>
+    <p class="testi-subhead">Real stories from real people who started exactly where you are.</p>
+    <div class="testi-grid">
       <div class="testi-card">
         <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="testi-quote">"I was so nervous to even pick up a gun. Patty made me feel safe and confident within the first hour. Highly recommend!"</p>
@@ -456,8 +228,10 @@
 <!-- WHERE DOES THIS FIT -->
 <section class="course-track">
   <div class="track-inner">
-    <span class="track-label">Course Path</span>
-    <h2 class="track-heading">Where Does This Fit?</h2>
+    <div class="section-header">
+      <span class="section-label">Course Path</span>
+      <h2 class="section-heading">Where Does This Fit?</h2>
+    </div>
     <div class="track-path">
       <div class="track-node">
         <div class="track-node-title">Intro to Handgun</div>
@@ -543,21 +317,16 @@
 </footer>
 
 <script>
-  function playVideo() {
-    const thumb = document.getElementById('videoThumb');
-    const iframe = document.createElement('iframe');
-    iframe.src = 'https://www.youtube.com/embed/YIBYasEvXTU?autoplay=1&rel=0';
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-    iframe.allowFullscreen = true;
-    iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
-    thumb.innerHTML = '';
-    thumb.appendChild(iframe);
-    thumb.style.cursor = 'default';
-  }
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
-  function closeMenu() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
 </script>
 </body>
 </html>
