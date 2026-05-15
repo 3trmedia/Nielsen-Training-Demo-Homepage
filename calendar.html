@@ -9,9 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
   <style>
-    /* =====================
-       VARIABLES + RESET
-    ===================== */
     :root {
       --navy: #0d1b2a;
       --navy-light: #142032;
@@ -33,590 +30,336 @@
     ul { list-style: none; }
     img { display: block; max-width: 100%; }
 
-    /* =====================
-       BUTTONS
-    ===================== */
-    .btn {
-      display: inline-block;
-      padding: 12px 28px;
-      border-radius: 4px;
-      font-family: 'Oswald', sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
-      border: 2px solid transparent;
-      text-align: center;
-    }
+    /* ── BUTTONS ── */
+    .btn { display: inline-block; padding: 12px 28px; border-radius: 4px; font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s; border: 2px solid transparent; text-align: center; }
     .btn-primary { background: var(--cta); color: var(--white); }
     .btn-primary:hover { background: var(--cta-hover); }
     .btn-outline { background: transparent; color: var(--white); border-color: var(--white); }
     .btn-outline:hover { background: var(--white); color: var(--navy); }
     .btn-sm { padding: 8px 18px; font-size: 12px; }
 
-    /* =====================
-       NAV
-    ===================== */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(13,27,42,0.97);
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid rgba(74,144,217,0.15);
-    }
-    .nav-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-    }
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(13,27,42,0.97); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(74,144,217,0.15); }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; }
     .nav-logo img { height: 38px; width: auto; }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      margin-left: auto;
-    }
-    .nav-links li a {
-      padding: 6px 12px;
-      font-family: 'Oswald', sans-serif;
-      font-size: 13px;
-      letter-spacing: 0.06em;
-      color: var(--grey);
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
+    .nav-links { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+    .nav-links li a { padding: 6px 12px; font-family: 'Oswald', sans-serif; font-size: 13px; letter-spacing: 0.06em; color: var(--grey); text-transform: uppercase; transition: color 0.2s; }
     .nav-links li a:hover, .nav-links li a.active { color: var(--white); }
     .nav-links .nav-cta a { padding: 0; }
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      flex-direction: column;
-      gap: 5px;
-      padding: 4px;
-      margin-left: auto;
-    }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; margin-left: auto; }
     .hamburger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
     .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 64px; left: 0; right: 0;
-      background: var(--navy-light);
-      z-index: 99;
-      padding: 20px 24px 28px;
-      border-bottom: 1px solid rgba(74,144,217,0.2);
-    }
+    .mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--navy-light); z-index: 99; padding: 20px 24px 28px; border-bottom: 1px solid rgba(74,144,217,0.2); }
     .mobile-menu.open { display: block; }
     .mobile-menu ul { display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
     .mobile-menu ul li a { display: block; padding: 10px 0; font-family: 'Oswald', sans-serif; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--grey); border-bottom: 1px solid rgba(255,255,255,0.06); }
     .mobile-menu ul li a:hover { color: var(--white); }
 
-    /* =====================
-       HERO
-    ===================== */
-    .cal-hero {
-      padding: 120px 24px 80px;
-      background: linear-gradient(140deg, #081220 0%, #0d1b2a 45%, #0f2348 100%);
-      border-bottom: 1px solid rgba(74,144,217,0.18);
-      position: relative;
-      overflow: hidden;
-    }
-    .cal-hero::before {
-      content: '';
-      position: absolute;
-      top: -120px; right: -120px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(26,115,232,0.1) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .cal-hero::after {
-      content: '';
-      position: absolute;
-      bottom: -80px; left: 10%;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(74,144,217,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .cal-hero-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 56px;
-      position: relative;
-      z-index: 1;
-    }
+    /* ── HERO ── */
+    .cal-hero { padding: 120px 24px 80px; background: linear-gradient(140deg, #081220 0%, #0d1b2a 45%, #0f2348 100%); border-bottom: 1px solid rgba(74,144,217,0.18); position: relative; overflow: hidden; }
+    .cal-hero::before { content: ''; position: absolute; top: -120px; right: -120px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(26,115,232,0.1) 0%, transparent 70%); pointer-events: none; }
+    .cal-hero-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 56px; position: relative; z-index: 1; }
     .cal-hero-left { flex: 1; }
-    .cal-hero-eyebrow {
-      display: inline-block;
-      font-family: 'Oswald', sans-serif;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 18px;
-      padding: 4px 12px;
-      border: 1px solid rgba(74,144,217,0.35);
-      border-radius: 2px;
-    }
-    .cal-hero-headline {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(30px, 4.5vw, 56px);
-      font-weight: 700;
-      line-height: 1.05;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-      margin-bottom: 22px;
-      color: var(--white);
-    }
+    .cal-hero-eyebrow { display: inline-block; font-family: 'Oswald', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; padding: 4px 12px; border: 1px solid rgba(74,144,217,0.35); border-radius: 2px; }
+    .cal-hero-headline { font-family: 'Oswald', sans-serif; font-size: clamp(30px, 4.5vw, 56px); font-weight: 700; line-height: 1.05; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 22px; color: var(--white); }
     .cal-hero-headline span { color: var(--accent); }
-    .cal-hero-sub {
-      font-size: 16px;
-      color: var(--grey);
-      line-height: 1.75;
-      max-width: 500px;
-      margin-bottom: 32px;
-    }
+    .cal-hero-sub { font-size: 16px; color: var(--grey); line-height: 1.75; max-width: 500px; margin-bottom: 32px; }
     .cal-hero-right { flex-shrink: 0; }
-    .cal-hero-card {
-      background: rgba(26,115,232,0.08);
-      border: 1px solid rgba(74,144,217,0.28);
-      border-radius: 10px;
-      padding: 32px 28px;
-      text-align: center;
-      min-width: 260px;
-    }
-    .cal-hero-card-label {
-      font-family: 'Oswald', sans-serif;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--grey);
-      margin-bottom: 16px;
-    }
+    .cal-hero-card { background: rgba(26,115,232,0.08); border: 1px solid rgba(74,144,217,0.28); border-radius: 10px; padding: 32px 28px; text-align: center; min-width: 260px; }
+    .cal-hero-card-label { font-family: 'Oswald', sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--grey); margin-bottom: 16px; display: block; }
     .cal-hero-card .btn { display: block; width: 100%; margin-bottom: 16px; }
     .cal-hero-card p { font-size: 13px; color: var(--grey); line-height: 1.6; }
     .cal-hero-card p strong { color: var(--white); }
 
-    /* =====================
-       COURSE PATH
-    ===================== */
-    .course-path {
-      background: var(--navy-light);
-      padding: 72px 24px;
-      border-bottom: 1px solid rgba(74,144,217,0.12);
-    }
+    /* ── COURSE PATH ── */
+    .course-path { background: var(--navy-light); padding: 72px 24px; border-bottom: 1px solid rgba(74,144,217,0.12); }
     .course-path-inner { max-width: 1100px; margin: 0 auto; }
-    .section-eyebrow {
-      font-family: 'Oswald', sans-serif;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 10px;
-      display: block;
-    }
-    .section-heading {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(22px, 3vw, 34px);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      color: var(--white);
-      margin-bottom: 8px;
-    }
-    .section-subhead {
-      color: var(--grey);
-      font-size: 15px;
-      line-height: 1.65;
-      max-width: 540px;
-    }
+    .section-eyebrow { font-family: 'Oswald', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; display: block; }
+    .section-heading { font-family: 'Oswald', sans-serif; font-size: clamp(22px, 3vw, 34px); font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; color: var(--white); margin-bottom: 8px; }
+    .section-subhead { color: var(--grey); font-size: 15px; line-height: 1.65; max-width: 540px; }
     .course-path-header { text-align: center; margin-bottom: 52px; }
     .course-path-header .section-subhead { margin: 0 auto; }
-    .tracks-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-    }
-    .track-card {
-      background: var(--navy);
-      border: 1px solid rgba(74,144,217,0.15);
-      border-radius: 10px;
-      padding: 28px 28px 24px;
-    }
-    .track-card-eyebrow {
-      font-family: 'Oswald', sans-serif;
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
-    .track-card-title {
-      font-family: 'Oswald', sans-serif;
-      font-size: 20px;
-      font-weight: 600;
-      text-transform: uppercase;
-      color: var(--white);
-      padding-bottom: 18px;
-      margin-bottom: 22px;
-      border-bottom: 1px solid rgba(74,144,217,0.18);
-    }
+    .tracks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .track-card { background: var(--navy); border: 1px solid rgba(74,144,217,0.15); border-radius: 10px; padding: 28px 28px 24px; }
+    .track-card-eyebrow { font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+    .track-card-title { font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 600; text-transform: uppercase; color: var(--white); padding-bottom: 18px; margin-bottom: 22px; border-bottom: 1px solid rgba(74,144,217,0.18); }
     .track-steps { display: flex; flex-direction: column; }
-    .track-step {
-      display: flex;
-      gap: 16px;
-      text-decoration: none;
-      transition: opacity 0.18s;
-    }
+    .track-step { display: flex; gap: 16px; text-decoration: none; transition: opacity 0.18s; }
     .track-step:hover { opacity: 0.75; }
-    .track-step-spine {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex-shrink: 0;
-    }
-    .step-num {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: var(--accent);
-      color: var(--white);
-      font-family: 'Oswald', sans-serif;
-      font-weight: 700;
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      z-index: 1;
-    }
-    .step-line {
-      width: 2px;
-      flex: 1;
-      min-height: 18px;
-      background: rgba(74,144,217,0.2);
-      margin: 5px 0;
-    }
+    .track-step-spine { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .step-num { width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: var(--white); font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-line { width: 2px; flex: 1; min-height: 18px; background: rgba(74,144,217,0.2); margin: 5px 0; }
     .track-step:last-child .step-line { display: none; }
     .track-step-body { padding: 3px 0 22px; }
     .track-step:last-child .track-step-body { padding-bottom: 0; }
-    .step-name {
-      font-family: 'Oswald', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 3px;
-      letter-spacing: 0.03em;
-    }
+    .step-name { font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 3px; letter-spacing: 0.03em; }
     .step-desc { font-size: 13px; color: var(--grey); line-height: 1.5; }
 
-    /* =====================
-       FILTER BAR
-    ===================== */
-    .filter-bar {
-      position: sticky;
-      top: 64px;
-      z-index: 80;
-      background: rgba(26,42,58,0.98);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(74,144,217,0.2);
-      padding: 12px 24px;
-    }
-    .filter-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    .filter-label-text {
-      font-family: 'Oswald', sans-serif;
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--grey);
-      white-space: nowrap;
-    }
-    .filter-select {
-      background: var(--navy);
-      color: var(--white);
-      border: 1px solid rgba(74,144,217,0.28);
-      border-radius: 4px;
-      padding: 8px 36px 8px 12px;
-      font-family: 'Roboto', sans-serif;
-      font-size: 13px;
-      cursor: pointer;
-      appearance: none;
-      -webkit-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%234a90d9' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 12px center;
-      min-width: 210px;
-    }
+    /* ── FILTER BAR ── */
+    .filter-bar { position: sticky; top: 64px; z-index: 80; background: rgba(26,42,58,0.98); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(74,144,217,0.2); padding: 12px 24px; }
+    .filter-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .filter-label-text { font-family: 'Oswald', sans-serif; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); white-space: nowrap; }
+    .filter-select { background: var(--navy); color: var(--white); border: 1px solid rgba(74,144,217,0.28); border-radius: 4px; padding: 8px 36px 8px 12px; font-family: 'Roboto', sans-serif; font-size: 13px; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%234a90d9' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; min-width: 210px; }
     .filter-select:focus { outline: none; border-color: var(--accent); }
     .filter-count { font-size: 13px; color: var(--grey); margin-left: 4px; }
-    .filter-clear {
-      margin-left: auto;
-      background: none;
-      border: none;
-      color: var(--accent);
-      font-size: 13px;
-      cursor: pointer;
-      font-family: 'Roboto', sans-serif;
-      text-decoration: underline;
-      white-space: nowrap;
-      padding: 0;
-    }
+    .filter-clear { margin-left: auto; background: none; border: none; color: var(--accent); font-size: 13px; cursor: pointer; font-family: 'Roboto', sans-serif; text-decoration: underline; white-space: nowrap; padding: 0; }
 
-    /* =====================
-       SOCIAL PROOF STRIP
-    ===================== */
-    .proof-strip {
-      background: rgba(26,115,232,0.07);
-      border-bottom: 1px solid rgba(74,144,217,0.14);
-      padding: 16px 24px;
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    /* ── SOCIAL PROOF STRIP ── */
+    .proof-strip { background: rgba(26,115,232,0.07); border-bottom: 1px solid rgba(74,144,217,0.14); padding: 16px 24px; min-height: 72px; display: flex; align-items: center; justify-content: center; }
     .proof-strip-inner { max-width: 740px; margin: 0 auto; text-align: center; }
     .proof-stars { color: var(--gold); font-size: 12px; margin-bottom: 5px; letter-spacing: 2px; }
-    .proof-quote {
-      font-size: 15px;
-      color: var(--white);
-      font-style: italic;
-      line-height: 1.5;
-      transition: opacity 0.35s ease;
-    }
-    .proof-author {
-      font-family: 'Oswald', sans-serif;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-top: 6px;
-    }
+    .proof-quote { font-size: 15px; color: var(--white); font-style: italic; line-height: 1.5; transition: opacity 0.35s ease; }
+    .proof-author { font-family: 'Oswald', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-top: 6px; }
 
-    /* =====================
-       LISTINGS
-    ===================== */
-    .listings-section {
-      padding: 48px 24px 64px;
-      background: var(--navy);
-      min-height: 400px;
-    }
-    .listings-inner { max-width: 1100px; margin: 0 auto; }
-    .listings-grid {
+    /* ══════════════════════════════════════════
+       DASHBOARD SECTION
+    ══════════════════════════════════════════ */
+    .dashboard-section { background: var(--navy); padding: 20px 24px 64px; }
+    .dashboard-inner { max-width: 1100px; margin: 0 auto; }
+    .dashboard-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      grid-template-columns: 236px 1fr 296px;
+      gap: 14px;
+      align-items: start;
     }
-    .no-results {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 80px 24px;
-    }
-    .no-results h3 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 22px;
-      color: var(--white);
-      margin-bottom: 10px;
-    }
-    .no-results p { color: var(--grey); font-size: 15px; }
 
-    /* Class Card */
-    .class-card {
+    /* ── SHARED PANEL ── */
+    .panel {
       background: var(--navy-light);
-      border: 1px solid rgba(74,144,217,0.14);
-      border-radius: 8px;
-      padding: 20px 20px 18px;
-      display: flex;
-      flex-direction: column;
-      transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+      border: 1px solid rgba(74,144,217,0.16);
+      border-radius: 10px;
+      overflow: hidden;
     }
-    .class-card:hover {
-      border-color: rgba(74,144,217,0.38);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-    }
-    .card-badge {
-      display: inline-block;
-      font-family: 'Oswald', sans-serif;
-      font-size: 10px;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      color: var(--accent);
-      background: rgba(74,144,217,0.1);
-      border: 1px solid rgba(74,144,217,0.22);
-      border-radius: 2px;
-      padding: 2px 8px;
-      margin-bottom: 12px;
-      align-self: flex-start;
-    }
-    .card-name {
-      font-family: 'Oswald', sans-serif;
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--white);
-      line-height: 1.2;
-      margin-bottom: 12px;
-    }
-    .card-meta { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
-    .card-meta-row { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--grey); }
-    .card-meta-row svg { flex-shrink: 0; opacity: 0.65; }
-    .card-outcome {
-      font-size: 13px;
-      color: rgba(176,190,197,0.9);
-      line-height: 1.55;
-      font-style: italic;
-      border-left: 2px solid rgba(74,144,217,0.32);
-      padding-left: 10px;
-      margin-bottom: 16px;
-      flex: 1;
-    }
-    .card-footer {
+
+    /* ── LEFT PANEL ── */
+    .panel-left { display: flex; flex-direction: column; }
+
+    .mini-cal-hdr {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      padding-top: 14px;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 14px 14px 8px;
     }
-    .card-spots {
+    .mini-cal-month {
       font-family: 'Oswald', sans-serif;
-      font-size: 11px;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
     }
-    .spots-low { color: var(--danger); }
-    .spots-medium { color: var(--warn); }
-    .spots-open { color: var(--green); }
-    .card-btn {
+    .mini-cal-navs { display: flex; gap: 4px; }
+    .mini-nav-btn {
+      background: none;
+      border: 1px solid rgba(74,144,217,0.2);
+      border-radius: 4px;
+      color: var(--grey);
+      width: 22px; height: 22px;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s, color 0.2s;
+      line-height: 1;
+      padding: 0;
+    }
+    .mini-nav-btn:hover { border-color: var(--accent); color: var(--white); }
+
+    .mini-cal-body { padding: 0 8px 10px; }
+    .mini-wday-row { display: grid; grid-template-columns: repeat(7, 1fr); }
+    .mini-wday { text-align: center; font-family: 'Oswald', sans-serif; font-size: 9px; letter-spacing: 0.06em; color: rgba(176,190,197,0.5); padding: 4px 0 5px; }
+    .mini-days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; }
+
+    .cal-day {
+      position: relative;
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+      color: rgba(176,190,197,0.4);
+      transition: background 0.13s, color 0.13s;
+      user-select: none;
+      line-height: 1;
+    }
+    .cal-day.empty { cursor: default; pointer-events: none; }
+    .cal-day.has-class { color: rgba(176,190,197,0.85); }
+    .cal-day:hover:not(.empty):not(.selected) { background: rgba(74,144,217,0.16); color: var(--white); }
+    .cal-day.today:not(.selected) { color: var(--accent); font-weight: 700; }
+    .cal-day.selected { background: var(--accent); color: var(--white) !important; font-weight: 600; }
+    .cal-dot {
+      position: absolute;
+      bottom: 3px;
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .cal-day.selected .cal-dot { background: rgba(255,255,255,0.6); }
+
+    .upcoming-sep { border: none; border-top: 1px solid rgba(74,144,217,0.12); margin: 2px 0 0; }
+    .upcoming-hdr { padding: 10px 14px 6px; font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+    .upcoming-item { padding: 8px 14px; border-top: 1px solid rgba(255,255,255,0.04); cursor: pointer; transition: background 0.13s; }
+    .upcoming-item:hover { background: rgba(74,144,217,0.09); }
+    .upcoming-item-name { font-family: 'Oswald', sans-serif; font-size: 12px; color: var(--white); margin-bottom: 2px; }
+    .upcoming-item-meta { font-size: 10px; color: var(--grey); }
+
+    /* ── CENTER PANEL ── */
+    .panel-center { display: flex; flex-direction: column; min-height: 500px; }
+    .center-date-hdr {
+      padding: 15px 18px 12px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white);
+      border-bottom: 1px solid rgba(74,144,217,0.12);
+      flex-shrink: 0;
+      letter-spacing: 0.02em;
+    }
+    .center-rows { flex: 1; overflow-y: auto; }
+
+    .class-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 13px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+    .class-row:last-child { border-bottom: none; }
+    .class-row:hover:not(.active) { background: rgba(74,144,217,0.1); }
+    .class-row.active { background: var(--cta); }
+
+    .row-time-col { flex-shrink: 0; min-width: 50px; }
+    .row-time { font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: var(--white); line-height: 1; }
+    .row-time-sub { font-size: 10px; color: rgba(176,190,197,0.6); margin-top: 2px; }
+    .class-row.active .row-time-sub { color: rgba(255,255,255,0.7); }
+
+    .row-body { flex: 1; min-width: 0; }
+    .row-name { font-family: 'Oswald', sans-serif; font-size: 14px; color: var(--white); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .row-tags { display: flex; align-items: center; gap: 5px; }
+    .row-tag { font-family: 'Oswald', sans-serif; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; }
+    .tag-handgun { background: rgba(74,144,217,0.2); color: var(--accent); }
+    .tag-rifle { background: rgba(76,175,138,0.2); color: #4caf8a; }
+    .tag-specialty { background: rgba(232,160,32,0.2); color: #e8a020; }
+    .class-row.active .row-tag { background: rgba(255,255,255,0.22); color: rgba(255,255,255,0.92); }
+    .row-loc { font-size: 11px; color: rgba(176,190,197,0.6); margin-top: 3px; }
+    .class-row.active .row-loc { color: rgba(255,255,255,0.75); }
+
+    .no-classes-msg { padding: 56px 20px; text-align: center; }
+    .no-classes-msg h4 { font-family: 'Oswald', sans-serif; font-size: 16px; color: var(--white); margin-bottom: 8px; }
+    .no-classes-msg p { font-size: 13px; color: var(--grey); margin-bottom: 20px; line-height: 1.6; }
+
+    /* ── RIGHT PANEL ── */
+    .panel-right {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .sheet-bar {
+      display: none;
+      padding: 10px 16px 5px;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .sheet-handle { width: 36px; height: 4px; background: rgba(255,255,255,0.18); border-radius: 2px; }
+    .sheet-close { background: none; border: none; color: var(--grey); font-size: 12px; cursor: pointer; font-family: 'Roboto', sans-serif; padding: 0; }
+    .sheet-close:hover { color: var(--white); }
+
+    .detail-scroll { flex: 1; overflow-y: auto; padding: 16px 16px 0; }
+
+    .detail-pill {
       display: inline-block;
-      padding: 7px 14px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .detail-name { font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: var(--white); line-height: 1.15; text-transform: uppercase; margin-bottom: 9px; }
+    .detail-date-line { font-size: 12px; color: var(--accent); font-family: 'Oswald', sans-serif; letter-spacing: 0.06em; margin-bottom: 10px; }
+    .detail-desc { font-size: 13px; color: var(--grey); line-height: 1.65; margin-bottom: 14px; }
+    .detail-img { width: 100%; border-radius: 6px; overflow: hidden; margin-bottom: 14px; aspect-ratio: 16/9; }
+    .detail-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .stat-rows { margin-bottom: 8px; }
+    .stat-row { display: flex; align-items: baseline; padding: 8px 0; border-bottom: 1px dotted rgba(74,144,217,0.2); }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-lbl { font-size: 12px; color: var(--grey); white-space: nowrap; flex-shrink: 0; }
+    .stat-dots { flex: 1; border-bottom: 1px dotted rgba(74,144,217,0.22); margin: 0 8px; position: relative; top: -4px; }
+    .stat-val { font-family: 'Oswald', sans-serif; font-size: 13px; color: var(--white); font-weight: 600; white-space: nowrap; flex-shrink: 0; }
+    .stat-val.warn { color: var(--warn); }
+    .stat-val.danger { color: var(--danger); }
+
+    .detail-cta-row { padding: 12px 16px; border-top: 1px solid rgba(74,144,217,0.12); display: flex; gap: 8px; flex-shrink: 0; }
+    .detail-reserve {
+      flex: 1;
+      display: block;
+      text-align: center;
+      padding: 12px 8px;
       background: var(--cta);
       color: var(--white);
       font-family: 'Oswald', sans-serif;
-      font-size: 11px;
+      font-size: 13px;
+      font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      border-radius: 3px;
+      border-radius: 4px;
       transition: background 0.2s;
-      white-space: nowrap;
       border: none;
       cursor: pointer;
     }
-    .card-btn:hover { background: var(--cta-hover); }
-
-    /* =====================
-       EMAIL CAPTURE
-    ===================== */
-    .email-capture {
-      background: var(--navy-light);
-      border-top: 1px solid rgba(74,144,217,0.14);
-      border-bottom: 1px solid rgba(74,144,217,0.14);
-      padding: 64px 24px;
+    .detail-reserve:hover { background: var(--cta-hover); }
+    .detail-save {
+      width: 44px;
+      background: rgba(74,144,217,0.1);
+      border: 1px solid rgba(74,144,217,0.25);
+      border-radius: 4px;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      flex-shrink: 0;
     }
+    .detail-save:hover, .detail-save.saved { background: rgba(74,144,217,0.25); color: var(--white); border-color: var(--accent); }
+
+    .detail-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center; }
+    .detail-empty svg { opacity: 0.18; margin-bottom: 14px; }
+    .detail-empty p { color: var(--grey); font-size: 13px; line-height: 1.6; max-width: 200px; }
+
+    /* Sheet overlay */
+    .sheet-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 299; }
+    .sheet-overlay.open { display: block; }
+
+    /* ── EMAIL CAPTURE ── */
+    .email-capture { background: var(--navy-light); border-top: 1px solid rgba(74,144,217,0.14); border-bottom: 1px solid rgba(74,144,217,0.14); padding: 64px 24px; }
     .email-capture-inner { max-width: 660px; margin: 0 auto; text-align: center; }
     .email-capture-inner .section-subhead { margin: 0 auto 32px; }
-    .email-form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      text-align: left;
-    }
+    .email-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; text-align: left; }
     .email-form .span-full { grid-column: 1 / -1; }
-    .form-input, .form-select-field {
-      width: 100%;
-      padding: 11px 14px;
-      background: var(--navy);
-      border: 1px solid rgba(74,144,217,0.24);
-      border-radius: 4px;
-      color: var(--white);
-      font-family: 'Roboto', sans-serif;
-      font-size: 14px;
-      transition: border-color 0.2s;
-    }
+    .form-input, .form-select-field { width: 100%; padding: 11px 14px; background: var(--navy); border: 1px solid rgba(74,144,217,0.24); border-radius: 4px; color: var(--white); font-family: 'Roboto', sans-serif; font-size: 14px; transition: border-color 0.2s; }
     .form-input::placeholder { color: rgba(176,190,197,0.45); }
     .form-input:focus, .form-select-field:focus { outline: none; border-color: var(--accent); }
-    .form-select-field {
-      color: var(--grey);
-      appearance: none;
-      -webkit-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%234a90d9' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 12px center;
-      padding-right: 32px;
-      background-color: var(--navy);
-    }
+    .form-select-field { color: var(--grey); appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%234a90d9' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; background-color: var(--navy); }
     .form-select-field option { color: var(--white); background: var(--navy); }
 
-    /* =====================
-       FOOTER CTA
-    ===================== */
-    .footer-cta {
-      background: linear-gradient(135deg, #0b1e38 0%, #143060 50%, #0d1b2a 100%);
-      padding: 80px 24px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .footer-cta::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('images/hero-bg.jpg') center/cover no-repeat;
-      opacity: 0.07;
-    }
+    /* ── FOOTER CTA ── */
+    .footer-cta { background: linear-gradient(135deg, #0b1e38 0%, #143060 50%, #0d1b2a 100%); padding: 80px 24px; text-align: center; position: relative; overflow: hidden; }
+    .footer-cta::before { content: ''; position: absolute; inset: 0; background: url('images/hero-bg.jpg') center/cover no-repeat; opacity: 0.07; }
     .footer-cta-inner { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; }
-    .footer-cta-eyebrow {
-      font-family: 'Oswald', sans-serif;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-    }
-    .footer-cta h2 {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(30px, 5vw, 52px);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-      line-height: 1.1;
-      margin-bottom: 28px;
-      color: var(--white);
-    }
+    .footer-cta-eyebrow { font-family: 'Oswald', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .footer-cta h2 { font-family: 'Oswald', sans-serif; font-size: clamp(30px, 5vw, 52px); font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.1; margin-bottom: 28px; color: var(--white); }
 
-    /* =====================
-       FOOTER
-    ===================== */
-    footer {
-      background: #060d17;
-      border-top: 1px solid rgba(74,144,217,0.1);
-      padding: 52px 24px 24px;
-    }
-    .footer-grid {
-      max-width: 1100px;
-      margin: 0 auto 40px;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 32px;
-    }
+    /* ── FOOTER ── */
+    footer { background: #060d17; border-top: 1px solid rgba(74,144,217,0.1); padding: 52px 24px 24px; }
+    .footer-grid { max-width: 1100px; margin: 0 auto 40px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; }
     .footer-logo img { height: 44px; width: auto; margin-bottom: 16px; }
     .footer-tagline { font-size: 13px; color: var(--grey); line-height: 1.75; }
     .footer-col h4 { font-family: 'Oswald', sans-serif; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); margin-bottom: 14px; }
@@ -631,27 +374,43 @@
     .social-icon:hover { background: var(--accent); color: var(--white); }
     .footer-bottom { max-width: 1100px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 20px; font-size: 12px; color: rgba(176,190,197,0.45); text-align: center; }
 
-    /* =====================
+    /* ══════════════════════════════════════════
        RESPONSIVE
-    ===================== */
-    @media (max-width: 900px) {
+    ══════════════════════════════════════════ */
+    @media (max-width: 980px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .cal-hero-inner { flex-direction: column; }
       .cal-hero-right { width: 100%; }
       .cal-hero-card { min-width: 0; }
       .tracks-grid { grid-template-columns: 1fr; }
-      .listings-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 600px) {
-      .cal-hero { padding: 96px 20px 56px; }
       .filter-inner { gap: 10px; }
       .filter-label-text { display: none; }
       .filter-select { min-width: 0; width: 100%; }
-      .listings-grid { grid-template-columns: 1fr; }
+      /* 2-col dashboard: left + center */
+      .dashboard-grid { grid-template-columns: 200px 1fr; }
+      /* Right panel becomes bottom sheet */
+      .panel-right {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        height: 82vh;
+        z-index: 300;
+        border-radius: 16px 16px 0 0;
+        transform: translateY(100%);
+        transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+        border-bottom: none;
+      }
+      .panel-right.open { transform: translateY(0); }
+      .sheet-bar { display: flex; }
       .email-form { grid-template-columns: 1fr; }
       .email-form .span-full { grid-column: 1; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .cal-hero { padding: 96px 20px 56px; }
+      .dashboard-section { padding: 16px 12px 48px; }
+      .dashboard-grid { grid-template-columns: 1fr; gap: 12px; }
+      .panel-center { min-height: 280px; }
       .footer-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -670,7 +429,7 @@
       <li><a href="#">About</a></li>
       <li><a href="#">Gear</a></li>
       <li><a href="#">Affiliates</a></li>
-      <li class="nav-cta"><a href="#listings" class="btn btn-primary btn-sm">Sign Up for a Class</a></li>
+      <li class="nav-cta"><a href="#dashboard" class="btn btn-primary btn-sm">Sign Up for a Class</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
@@ -685,29 +444,29 @@
     <li><a href="#" onclick="closeMenu()">Gear</a></li>
     <li><a href="#" onclick="closeMenu()">Affiliates</a></li>
   </ul>
-  <a href="#listings" class="btn btn-primary" onclick="closeMenu()">Sign Up for a Class</a>
+  <a href="#dashboard" class="btn btn-primary" onclick="closeMenu()">Sign Up for a Class</a>
 </div>
 
-<!-- ==================== HERO ==================== -->
+<!-- HERO -->
 <section class="cal-hero">
   <div class="cal-hero-inner">
     <div class="cal-hero-left">
       <span class="cal-hero-eyebrow">NTAC — 2026 Course Schedule</span>
       <h1 class="cal-hero-headline">Stop Standing Still.<br><span>Learn To Run Your Rifle.</span></h1>
       <p class="cal-hero-sub">You can hit a target — but can you do it while moving? NTAC courses build on each other to take you from zero to real-world defensive application. Find your next class below and reserve your spot before it fills.</p>
-      <a href="#listings" class="btn btn-primary">Browse Open Classes</a>
+      <a href="#dashboard" class="btn btn-primary">Browse Open Classes</a>
     </div>
     <div class="cal-hero-right">
       <div class="cal-hero-card">
-        <p class="cal-hero-card-label">New Dates Added Monthly</p>
-        <a href="#listings" class="btn btn-primary">Reserve My Spot</a>
+        <span class="cal-hero-card-label">New Dates Added Monthly</span>
+        <a href="#dashboard" class="btn btn-primary">Reserve My Spot</a>
         <p>Classes fill fast.<br><strong>Several upcoming dates are nearly full.</strong></p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== COURSE PATH ==================== -->
+<!-- COURSE PATH -->
 <section class="course-path" id="find-your-level">
   <div class="course-path-inner">
     <div class="course-path-header">
@@ -716,84 +475,55 @@
       <p class="section-subhead">Each track builds on the last. Pick the course that matches your current skills and follow the path up.</p>
     </div>
     <div class="tracks-grid">
-
-      <!-- HANDGUN TRACK -->
       <div class="track-card">
         <div class="track-card-eyebrow">Track 1</div>
         <div class="track-card-title">Handgun</div>
         <div class="track-steps">
           <a href="beginner-handgun.html" class="track-step">
             <div class="track-step-spine"><div class="step-num">1</div><div class="step-line"></div></div>
-            <div class="track-step-body">
-              <div class="step-name">Beginner Handgun</div>
-              <div class="step-desc">Learn to shoot safely and accurately — no prior experience required.</div>
-            </div>
+            <div class="track-step-body"><div class="step-name">Beginner Handgun</div><div class="step-desc">Learn to shoot safely and accurately — no prior experience required.</div></div>
           </a>
           <a href="handgun-proficiency.html" class="track-step">
             <div class="track-step-spine"><div class="step-num">2</div><div class="step-line"></div></div>
-            <div class="track-step-body">
-              <div class="step-name">Handgun Proficiency</div>
-              <div class="step-desc">Draw, move, and shoot with confidence in dynamic live fire drills.</div>
-            </div>
+            <div class="track-step-body"><div class="step-name">Handgun Proficiency</div><div class="step-desc">Draw, move, and shoot with confidence in dynamic live fire drills.</div></div>
           </a>
           <a href="defensive-handgun.html" class="track-step">
             <div class="track-step-spine"><div class="step-num">3</div><div class="step-line"></div></div>
-            <div class="track-step-body">
-              <div class="step-name">Defensive Handgun</div>
-              <div class="step-desc">Run your handgun under real-world defensive scenarios and pressure.</div>
-            </div>
+            <div class="track-step-body"><div class="step-name">Defensive Handgun</div><div class="step-desc">Run your handgun under real-world defensive scenarios and pressure.</div></div>
           </a>
           <a href="#" class="track-step">
             <div class="track-step-spine"><div class="step-num">4</div><div class="step-line"></div></div>
-            <div class="track-step-body">
-              <div class="step-name">CCW / Concealed Carry</div>
-              <div class="step-desc">Carry legally and responsibly in Utah — know the law and the draw.</div>
-            </div>
+            <div class="track-step-body"><div class="step-name">CCW / Concealed Carry</div><div class="step-desc">Carry legally and responsibly in Utah — know the law and the draw.</div></div>
           </a>
         </div>
       </div>
-
-      <!-- RIFLE TRACK -->
       <div class="track-card">
         <div class="track-card-eyebrow">Track 2</div>
         <div class="track-card-title">Rifle</div>
         <div class="track-steps">
           <a href="beginner-rifle.html" class="track-step">
             <div class="track-step-spine"><div class="step-num">1</div><div class="step-line"></div></div>
-            <div class="track-step-body">
-              <div class="step-name">Beginner Rifle</div>
-              <div class="step-desc">Learn to safely and accurately shoot your rifle from the ground up.</div>
-            </div>
+            <div class="track-step-body"><div class="step-name">Beginner Rifle</div><div class="step-desc">Learn to safely and accurately shoot your rifle from the ground up.</div></div>
           </a>
           <a href="rifle-proficiency.html" class="track-step">
             <div class="track-step-spine"><div class="step-num">2</div><div class="step-line"></div></div>
-            <div class="track-step-body">
-              <div class="step-name">Rifle Proficiency</div>
-              <div class="step-desc">Move and shoot while maintaining speed, accuracy, and control.</div>
-            </div>
+            <div class="track-step-body"><div class="step-name">Rifle Proficiency</div><div class="step-desc">Move and shoot while maintaining speed, accuracy, and control.</div></div>
           </a>
           <a href="defensive-rifle.html" class="track-step">
             <div class="track-step-spine"><div class="step-num">3</div><div class="step-line"></div></div>
-            <div class="track-step-body">
-              <div class="step-name">Defensive Rifle</div>
-              <div class="step-desc">Apply rifle skills under real-world defensive pressure and scenarios.</div>
-            </div>
+            <div class="track-step-body"><div class="step-name">Defensive Rifle</div><div class="step-desc">Apply rifle skills under real-world defensive pressure and scenarios.</div></div>
           </a>
           <a href="#" class="track-step">
             <div class="track-step-spine"><div class="step-num">4</div><div class="step-line"></div></div>
-            <div class="track-step-body">
-              <div class="step-name">CQB / Home Defense</div>
-              <div class="step-desc">Use your rifle tactically in close-quarters confined space situations.</div>
-            </div>
+            <div class="track-step-body"><div class="step-name">CQB / Home Defense</div><div class="step-desc">Use your rifle tactically in close-quarters confined space situations.</div></div>
           </a>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ==================== FILTER BAR ==================== -->
+<!-- FILTER BAR -->
 <div class="filter-bar">
   <div class="filter-inner">
     <span class="filter-label-text">Filter:</span>
@@ -824,7 +554,7 @@
   </div>
 </div>
 
-<!-- ==================== SOCIAL PROOF STRIP ==================== -->
+<!-- SOCIAL PROOF STRIP -->
 <div class="proof-strip">
   <div class="proof-strip-inner">
     <div class="proof-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
@@ -833,16 +563,44 @@
   </div>
 </div>
 
-<!-- ==================== LISTINGS ==================== -->
-<section class="listings-section" id="listings">
-  <div class="listings-inner">
-    <div class="listings-grid" id="listingsGrid">
-      <!-- Populated by JavaScript -->
+<!-- ══════════════════════════════════════════
+     DASHBOARD
+══════════════════════════════════════════ -->
+<section class="dashboard-section" id="dashboard">
+  <div class="dashboard-inner">
+    <div class="dashboard-grid">
+
+      <!-- LEFT: Mini Calendar + Upcoming -->
+      <div class="panel panel-left">
+        <div id="miniCalWrap"></div>
+        <hr class="upcoming-sep" />
+        <div class="upcoming-hdr">Upcoming</div>
+        <div id="upcomingList"></div>
+      </div>
+
+      <!-- CENTER: Class Rows -->
+      <div class="panel panel-center">
+        <div class="center-date-hdr" id="centerDateHdr">—</div>
+        <div class="center-rows" id="centerRows"></div>
+      </div>
+
+      <!-- RIGHT: Detail Panel -->
+      <div class="panel panel-right" id="rightPanel">
+        <div class="sheet-bar">
+          <div class="sheet-handle"></div>
+          <button class="sheet-close" onclick="closeSheet()">&#10005; Close</button>
+        </div>
+        <div id="detailContent" style="flex:1;display:flex;flex-direction:column;overflow:hidden;"></div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- ==================== EMAIL CAPTURE ==================== -->
+<!-- Sheet overlay (mobile) -->
+<div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
+
+<!-- EMAIL CAPTURE -->
 <section class="email-capture">
   <div class="email-capture-inner">
     <span class="section-eyebrow">Stay In the Loop</span>
@@ -874,16 +632,16 @@
   </div>
 </section>
 
-<!-- ==================== FOOTER CTA ==================== -->
+<!-- FOOTER CTA -->
 <div class="footer-cta">
   <div class="footer-cta-inner">
     <p class="footer-cta-eyebrow">Nielsen Training and Consulting</p>
     <h2>Ready to Train?<br>Don't Wait.</h2>
-    <a href="#listings" class="btn btn-outline">Sign Up for a Class</a>
+    <a href="#dashboard" class="btn btn-outline">Sign Up for a Class</a>
   </div>
 </div>
 
-<!-- ==================== FOOTER ==================== -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div>
@@ -921,136 +679,346 @@
 </footer>
 
 <script>
-  /* =====================
-     CLASS DATA (20 entries)
-  ===================== */
-  const CLASS_DATA = [
-    { name: "Rifle Proficiency",   type: "rifle-proficiency",   dateLabel: "May 16, 2026",       dateSort: "2026-05-16", time: "9:30 am",  location: "Layton",   outcome: "Stop standing still — learn to run your rifle on the move",               instructor: "Todd Nielsen", spots: 5,  link: "rifle-proficiency.html" },
-    { name: "Beginner Handgun",    type: "beginner-handgun",    dateLabel: "May 19–20, 2026",    dateSort: "2026-05-19", time: "5:00 pm",  location: "Orem TP",  outcome: "Build the fundamentals of safe, accurate handgun shooting",                instructor: "Todd Nielsen", spots: 8,  link: "beginner-handgun.html"  },
-    { name: "Rifle Proficiency",   type: "rifle-proficiency",   dateLabel: "May 20–21, 2026",    dateSort: "2026-05-20", time: "5:30 pm",  location: "Orem TP",  outcome: "Move and shoot with speed while maintaining rifle accuracy",                instructor: "Todd Nielsen", spots: 3,  link: "rifle-proficiency.html" },
-    { name: "CCW / Concealed Carry", type: "ccw",               dateLabel: "May 23, 2026",       dateSort: "2026-05-23", time: "9:00 am",  location: "Layton",   outcome: "Carry legally and responsibly in Utah — know the law and the draw",        instructor: "Todd Nielsen", spots: 5,  link: "#"                      },
-    { name: "Women's Handgun",     type: "womens-handgun",      dateLabel: "May 23, 2026",       dateSort: "2026-05-23", time: "10:00 am", location: "Layton",   outcome: "A supportive, women-only environment to build real handgun confidence",     instructor: "NTAC Staff",   spots: 6,  link: "#"                      },
-    { name: "Defensive Rifle",     type: "defensive-rifle",     dateLabel: "May 23, 2026",       dateSort: "2026-05-23", time: "9:30 am",  location: "Tooele",   outcome: "Apply rifle skills in real-world defensive scenarios under pressure",        instructor: "Todd Nielsen", spots: 12, link: "defensive-rifle.html"   },
-    { name: "TECC",                type: "tecc",                dateLabel: "May 23, 2026",       dateSort: "2026-05-23", time: "8:00 am",  location: "Orem TP",  outcome: "Tactical Emergency Casualty Care — handle life-threatening field injuries", instructor: "NTAC Staff",   spots: 10, link: "#"                      },
-    { name: "Defensive Rifle",     type: "defensive-rifle",     dateLabel: "May 26, 2026",       dateSort: "2026-05-26", time: "9:00 am",  location: "The Farm", outcome: "Real-world scenario drills in an outdoor tactical environment",             instructor: "Todd Nielsen", spots: 4,  link: "defensive-rifle.html"   },
-    { name: "Skills Maintenance",  type: "skills-maintenance",  dateLabel: "May 29, 2026",       dateSort: "2026-05-29", time: "9:00 am",  location: "Layton",   outcome: "Sharpen the fundamentals you've already built — stay sharp between courses", instructor: "NTAC Staff",   spots: 14, link: "#"                      },
-    { name: "CQB / Home Defense",  type: "cqb",                 dateLabel: "May 30, 2026",       dateSort: "2026-05-30", time: "9:00 am",  location: "The Farm", outcome: "Dominate confined spaces — use your rifle tactically in home defense",      instructor: "Todd Nielsen", spots: 4,  link: "#"                      },
-    { name: "Handgun Proficiency", type: "handgun-proficiency", dateLabel: "May 30, 2026",       dateSort: "2026-05-30", time: "9:16 am",  location: "Tooele",   outcome: "Draw, move, and shoot accurately — stop standing still at the range",      instructor: "Todd Nielsen", spots: 9,  link: "handgun-proficiency.html"},
-    { name: "Defensive Rifle",     type: "defensive-rifle",     dateLabel: "May 30, 2026",       dateSort: "2026-05-30", time: "9:00 am",  location: "Layton",   outcome: "Run your rifle in real scenarios — cover, movement, and legal force",       instructor: "Todd Nielsen", spots: 2,  link: "defensive-rifle.html"   },
-    { name: "Defensive Rifle",     type: "defensive-rifle",     dateLabel: "Jun 6, 2026",        dateSort: "2026-06-06", time: "9:00 am",  location: "Murray",   outcome: "NTAC's most advanced rifle course — real scenarios, no shortcuts",          instructor: "Todd Nielsen", spots: 7,  link: "defensive-rifle.html"   },
-    { name: "Defensive Handgun",   type: "defensive-handgun",   dateLabel: "Jun 6, 2026",        dateSort: "2026-06-06", time: "9:10 am",  location: "Layton",   outcome: "Use your handgun under real-world pressure — scenarios, cover, legal force", instructor: "Todd Nielsen", spots: 7,  link: "defensive-handgun.html" },
-    { name: "Women's Handgun",     type: "womens-handgun",      dateLabel: "Jun 6, 2026",        dateSort: "2026-06-06", time: "9:00 am",  location: "Murray",   outcome: "Build real confidence with a handgun in a supportive women-only setting",   instructor: "NTAC Staff",   spots: 8,  link: "#"                      },
-    { name: "CCW / Concealed Carry", type: "ccw",               dateLabel: "Jun 13, 2026",       dateSort: "2026-06-13", time: "9:00 am",  location: "Orem TP",  outcome: "Get your Utah CFP and carry with confidence and legal clarity",             instructor: "Todd Nielsen", spots: 11, link: "#"                      },
-    { name: "Handgun Proficiency", type: "handgun-proficiency", dateLabel: "Jun 10–11, 2026",    dateSort: "2026-06-10", time: "5:00 pm",  location: "Murray",   outcome: "Move and shoot accurately under pressure with your handgun",                instructor: "Todd Nielsen", spots: 6,  link: "handgun-proficiency.html"},
-    { name: "Defensive Handgun",   type: "defensive-handgun",   dateLabel: "Jun 10–11, 2026",    dateSort: "2026-06-10", time: "5:00 pm",  location: "Murray",   outcome: "NTAC's most advanced handgun course — scenarios, cover, and legal force",   instructor: "Todd Nielsen", spots: 3,  link: "defensive-handgun.html" },
-    { name: "Beginner Rifle",      type: "beginner-rifle",      dateLabel: "Jun 24–25, 2026",    dateSort: "2026-06-24", time: "5:00 pm",  location: "Orem TP",  outcome: "Learn to safely and accurately shoot a rifle — starting from zero",         instructor: "Todd Nielsen", spots: 12, link: "beginner-rifle.html"    },
-    { name: "Beginner Rifle",      type: "beginner-rifle",      dateLabel: "Jun 27, 2026",       dateSort: "2026-06-27", time: "9:30 am",  location: "Tooele",   outcome: "Fundamentals, zeroing, and live fire drills for new rifle shooters",         instructor: "Todd Nielsen", spots: 3,  link: "beginner-rifle.html"    },
-  ];
+/* =====================
+   CLASS DATA
+===================== */
+const CLASS_DATA = [
+  { name: "Rifle Proficiency",     type: "rifle-proficiency",   dateLabel: "May 16, 2026",     dateSort: "2026-05-16", time: "9:30 am",  location: "Layton",   spots: 5,  link: "rifle-proficiency.html" },
+  { name: "Beginner Handgun",      type: "beginner-handgun",    dateLabel: "May 19–20, 2026",  dateSort: "2026-05-19", time: "5:00 pm",  location: "Orem TP",  spots: 8,  link: "beginner-handgun.html"  },
+  { name: "Rifle Proficiency",     type: "rifle-proficiency",   dateLabel: "May 20–21, 2026",  dateSort: "2026-05-20", time: "5:30 pm",  location: "Orem TP",  spots: 3,  link: "rifle-proficiency.html" },
+  { name: "CCW / Concealed Carry", type: "ccw",                 dateLabel: "May 23, 2026",     dateSort: "2026-05-23", time: "9:00 am",  location: "Layton",   spots: 5,  link: "#"                      },
+  { name: "Women's Handgun",       type: "womens-handgun",      dateLabel: "May 23, 2026",     dateSort: "2026-05-23", time: "10:00 am", location: "Layton",   spots: 6,  link: "#"                      },
+  { name: "Defensive Rifle",       type: "defensive-rifle",     dateLabel: "May 23, 2026",     dateSort: "2026-05-23", time: "9:30 am",  location: "Tooele",   spots: 12, link: "defensive-rifle.html"   },
+  { name: "TECC",                  type: "tecc",                dateLabel: "May 23, 2026",     dateSort: "2026-05-23", time: "8:00 am",  location: "Orem TP",  spots: 10, link: "#"                      },
+  { name: "Defensive Rifle",       type: "defensive-rifle",     dateLabel: "May 26, 2026",     dateSort: "2026-05-26", time: "9:00 am",  location: "The Farm", spots: 4,  link: "defensive-rifle.html"   },
+  { name: "Skills Maintenance",    type: "skills-maintenance",  dateLabel: "May 29, 2026",     dateSort: "2026-05-29", time: "9:00 am",  location: "Layton",   spots: 14, link: "#"                      },
+  { name: "CQB / Home Defense",    type: "cqb",                 dateLabel: "May 30, 2026",     dateSort: "2026-05-30", time: "9:00 am",  location: "The Farm", spots: 4,  link: "#"                      },
+  { name: "Handgun Proficiency",   type: "handgun-proficiency", dateLabel: "May 30, 2026",     dateSort: "2026-05-30", time: "9:16 am",  location: "Tooele",   spots: 9,  link: "handgun-proficiency.html"},
+  { name: "Defensive Rifle",       type: "defensive-rifle",     dateLabel: "May 30, 2026",     dateSort: "2026-05-30", time: "9:00 am",  location: "Layton",   spots: 2,  link: "defensive-rifle.html"   },
+  { name: "Defensive Rifle",       type: "defensive-rifle",     dateLabel: "Jun 6, 2026",      dateSort: "2026-06-06", time: "9:00 am",  location: "Murray",   spots: 7,  link: "defensive-rifle.html"   },
+  { name: "Defensive Handgun",     type: "defensive-handgun",   dateLabel: "Jun 6, 2026",      dateSort: "2026-06-06", time: "9:10 am",  location: "Layton",   spots: 7,  link: "defensive-handgun.html" },
+  { name: "Women's Handgun",       type: "womens-handgun",      dateLabel: "Jun 6, 2026",      dateSort: "2026-06-06", time: "9:00 am",  location: "Murray",   spots: 8,  link: "#"                      },
+  { name: "Handgun Proficiency",   type: "handgun-proficiency", dateLabel: "Jun 10–11, 2026",  dateSort: "2026-06-10", time: "5:00 pm",  location: "Murray",   spots: 6,  link: "handgun-proficiency.html"},
+  { name: "Defensive Handgun",     type: "defensive-handgun",   dateLabel: "Jun 10–11, 2026",  dateSort: "2026-06-10", time: "5:00 pm",  location: "Murray",   spots: 3,  link: "defensive-handgun.html" },
+  { name: "CCW / Concealed Carry", type: "ccw",                 dateLabel: "Jun 13, 2026",     dateSort: "2026-06-13", time: "9:00 am",  location: "Orem TP",  spots: 11, link: "#"                      },
+  { name: "Beginner Rifle",        type: "beginner-rifle",      dateLabel: "Jun 24–25, 2026",  dateSort: "2026-06-24", time: "5:00 pm",  location: "Orem TP",  spots: 12, link: "beginner-rifle.html"    },
+  { name: "Beginner Rifle",        type: "beginner-rifle",      dateLabel: "Jun 27, 2026",     dateSort: "2026-06-27", time: "9:30 am",  location: "Tooele",   spots: 3,  link: "beginner-rifle.html"    },
+];
 
-  CLASS_DATA.sort((a, b) => a.dateSort.localeCompare(b.dateSort));
+/* Add IDs */
+CLASS_DATA.forEach((c, i) => c.id = i + 1);
+CLASS_DATA.sort((a, b) => a.dateSort.localeCompare(b.dateSort));
 
-  /* SVG icons */
-  const ICO_CAL  = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`;
-  const ICO_PIN  = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`;
-  const ICO_USER = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
+/* =====================
+   METADATA
+===================== */
+const META = {
+  'beginner-handgun':    { image: 'images/beginner-handgun.jpg',    skill: 'Beginner',     duration: '2 Days',    tagClass: 'tag-handgun',   tagLabel: 'Handgun',   pillBg: 'rgba(74,144,217,0.18)', pillColor: '#4a90d9', desc: 'Build the fundamentals of safe, accurate handgun shooting from the ground up. Covers firearm safety, grip, stance, sight alignment, and trigger control — all with live fire coaching from NTAC instructors.' },
+  'handgun-proficiency': { image: 'images/handgun-proficiency.jpg', skill: 'Intermediate', duration: 'Half Day',  tagClass: 'tag-handgun',   tagLabel: 'Handgun',   pillBg: 'rgba(74,144,217,0.18)', pillColor: '#4a90d9', desc: 'Take your handgun skills into motion. Draw from a holster, shoot while moving, execute magazine changes, and engage targets in dynamic live fire scenarios coached by NTAC instructors.' },
+  'defensive-handgun':   { image: 'images/defensive-handgun.jpg',   skill: 'Advanced',     duration: '1–2 Days',  tagClass: 'tag-handgun',   tagLabel: 'Handgun',   pillBg: 'rgba(74,144,217,0.18)', pillColor: '#4a90d9', desc: "NTAC's most advanced handgun course. Work through real-world defensive scenarios, legal use of force, cover and concealment, and high-pressure live fire drills with no shortcuts." },
+  'beginner-rifle':      { image: 'images/beginner-rifle.jpg',      skill: 'Beginner',     duration: '2 Days',    tagClass: 'tag-rifle',     tagLabel: 'Rifle',     pillBg: 'rgba(76,175,138,0.18)', pillColor: '#4caf8a', desc: 'Get introduced to modern sporting rifles and carbines. Learn safe handling, proper zeroing, body position, and consistent target hits in your first coached live fire session.' },
+  'rifle-proficiency':   { image: 'images/rifle-proficiency.jpg',   skill: 'Intermediate', duration: 'Half Day',  tagClass: 'tag-rifle',     tagLabel: 'Rifle',     pillBg: 'rgba(76,175,138,0.18)', pillColor: '#4caf8a', desc: 'Stop standing still — learn to run your rifle. Dynamic movement drills, rapid magazine changes, and multi-position live fire with real instructor feedback every step of the way.' },
+  'defensive-rifle':     { image: 'images/defensive-rifle.jpg',     skill: 'Advanced',     duration: '1–2 Days',  tagClass: 'tag-rifle',     tagLabel: 'Rifle',     pillBg: 'rgba(76,175,138,0.18)', pillColor: '#4caf8a', desc: "NTAC's most advanced rifle course. Scenario-based live fire, cover and concealment, vehicle and home defense situations, and the legal framework for use of deadly force." },
+  'ccw':                 { image: 'images/defensive-handgun.jpg',   skill: 'Any Level',    duration: 'Half Day',  tagClass: 'tag-specialty', tagLabel: 'Specialty', pillBg: 'rgba(232,160,32,0.18)', pillColor: '#e8a020', desc: 'Get your Utah Concealed Firearm Permit and learn to carry legally and responsibly. Covers state law, safe carry methods, drawing from concealment, and responsible ownership.' },
+  'womens-handgun':      { image: 'images/beginner-handgun.jpg',    skill: 'Beginner',     duration: 'Half Day',  tagClass: 'tag-specialty', tagLabel: 'Specialty', pillBg: 'rgba(232,160,32,0.18)', pillColor: '#e8a020', desc: "A supportive, women-only training environment for new shooters. Build real handgun confidence alongside peers at the same skill level with NTAC's proven instruction." },
+  'tecc':                { image: 'images/community.jpg',           skill: 'Any Level',    duration: 'Half Day',  tagClass: 'tag-specialty', tagLabel: 'Specialty', pillBg: 'rgba(232,160,32,0.18)', pillColor: '#e8a020', desc: 'Tactical Emergency Casualty Care — learn to handle life-threatening injuries in the field. Covers tourniquet application, wound packing, airway management, and patient assessment.' },
+  'cqb':                 { image: 'images/defensive-rifle.jpg',     skill: 'Advanced',     duration: 'Full Day',  tagClass: 'tag-specialty', tagLabel: 'Specialty', pillBg: 'rgba(232,160,32,0.18)', pillColor: '#e8a020', desc: 'Close Quarters Battle for home defense. Engage threats effectively in confined spaces with your rifle using proven military and law enforcement clearing techniques.' },
+  'skills-maintenance':  { image: 'images/rifle-proficiency.jpg',   skill: 'Any Level',    duration: 'Half Day',  tagClass: 'tag-specialty', tagLabel: 'Specialty', pillBg: 'rgba(232,160,32,0.18)', pillColor: '#e8a020', desc: 'Keep your fundamentals sharp between courses. Structured live fire drills focusing on marksmanship, speed, and muscle memory — suitable for any skill level.' },
+};
 
-  function spotsHtml(n) {
-    if (n <= 3) return `<span class="card-spots spots-low">&#9679; ${n} spot${n===1?'':'s'} left</span>`;
-    if (n <= 6) return `<span class="card-spots spots-medium">&#9679; ${n} spots left</span>`;
-    return `<span class="card-spots spots-open">&#9679; ${n} spots open</span>`;
+/* =====================
+   STATE
+===================== */
+const TODAY = '2026-05-14';
+let selDate = TODAY;
+let selId   = null;
+let calYear = 2026;
+let calMonth = 4; /* May, 0-indexed */
+
+/* =====================
+   FILTERS
+===================== */
+let fType = '', fLoc = '';
+
+function filtered() {
+  return CLASS_DATA.filter(c =>
+    (!fType || c.type === fType) &&
+    (!fLoc  || c.location === fLoc)
+  );
+}
+
+function onDate(d) {
+  return filtered().filter(c => c.dateSort === d)
+    .sort((a, b) => a.time.localeCompare(b.time));
+}
+
+function datesWithClasses() {
+  return new Set(filtered().map(c => c.dateSort));
+}
+
+/* =====================
+   MINI CALENDAR
+===================== */
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const WDAYS  = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+
+function buildMiniCal() {
+  const withCls = datesWithClasses();
+  const firstDow = new Date(calYear, calMonth, 1).getDay();
+  const daysInMo = new Date(calYear, calMonth + 1, 0).getDate();
+
+  let daysHtml = '';
+  for (let i = 0; i < firstDow; i++) daysHtml += `<div class="cal-day empty"></div>`;
+  for (let d = 1; d <= daysInMo; d++) {
+    const ds = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const hasCls  = withCls.has(ds);
+    const isSel   = ds === selDate;
+    const isToday = ds === TODAY;
+    let cls = 'cal-day';
+    if (hasCls) cls += ' has-class';
+    if (isSel)  cls += ' selected';
+    else if (isToday) cls += ' today';
+    daysHtml += `<div class="${cls}" onclick="selectDate('${ds}')">${d}${hasCls ? '<div class="cal-dot"></div>' : ''}</div>`;
   }
 
-  function typeLabel(t) {
-    const map = {
-      'beginner-handgun': 'Beginner Handgun',
-      'handgun-proficiency': 'Handgun Proficiency',
-      'defensive-handgun': 'Defensive Handgun',
-      'ccw': 'CCW / Concealed Carry',
-      'beginner-rifle': 'Beginner Rifle',
-      'rifle-proficiency': 'Rifle Proficiency',
-      'defensive-rifle': 'Defensive Rifle',
-      'cqb': 'CQB / Home Defense',
-      'womens-handgun': "Women's Handgun",
-      'tecc': 'TECC',
-      'skills-maintenance': 'Skills Maintenance',
-    };
-    return map[t] || t;
-  }
-
-  function renderCard(c) {
-    return `<div class="class-card">
-      <span class="card-badge">${typeLabel(c.type)}</span>
-      <div class="card-name">${c.name}</div>
-      <div class="card-meta">
-        <div class="card-meta-row">${ICO_CAL} ${c.dateLabel} &nbsp;&middot;&nbsp; ${c.time}</div>
-        <div class="card-meta-row">${ICO_PIN} ${c.location}</div>
-        <div class="card-meta-row">${ICO_USER} ${c.instructor}</div>
+  document.getElementById('miniCalWrap').innerHTML = `
+    <div class="mini-cal-hdr">
+      <div class="mini-cal-month">${MONTHS[calMonth]} ${calYear}</div>
+      <div class="mini-cal-navs">
+        <button class="mini-nav-btn" onclick="changeMonth(-1)">&#8249;</button>
+        <button class="mini-nav-btn" onclick="changeMonth(1)">&#8250;</button>
       </div>
-      <div class="card-outcome">${c.outcome}</div>
-      <div class="card-footer">
-        ${spotsHtml(c.spots)}
-        <a href="${c.link}" class="card-btn">Reserve My Spot</a>
+    </div>
+    <div class="mini-cal-body">
+      <div class="mini-wday-row">${WDAYS.map(w=>`<div class="mini-wday">${w}</div>`).join('')}</div>
+      <div class="mini-days-grid">${daysHtml}</div>
+    </div>
+  `;
+}
+
+function changeMonth(d) {
+  calMonth += d;
+  if (calMonth < 0)  { calMonth = 11; calYear--; }
+  if (calMonth > 11) { calMonth = 0;  calYear++; }
+  buildMiniCal();
+}
+
+/* =====================
+   CENTER PANEL
+===================== */
+function formatDateLabel(ds) {
+  const dt = new Date(ds + 'T12:00:00');
+  return dt.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+}
+
+function renderCenter() {
+  const classes = onDate(selDate);
+  document.getElementById('centerDateHdr').textContent = formatDateLabel(selDate);
+  const rowsEl = document.getElementById('centerRows');
+
+  if (classes.length === 0) {
+    rowsEl.innerHTML = `
+      <div class="no-classes-msg">
+        <h4>No Classes on This Date</h4>
+        <p>There are no scheduled classes on this date.<br>Select another date or jump to the next available.</p>
+        <button class="btn btn-primary btn-sm" onclick="jumpToNext()">Next Available Date &rarr;</button>
+      </div>`;
+    renderDetailEmpty();
+    return;
+  }
+
+  rowsEl.innerHTML = classes.map(c => {
+    const m = META[c.type] || {};
+    const isActive = c.id === selId;
+    return `<div class="class-row${isActive ? ' active' : ''}" onclick="selectClass(${c.id})">
+      <div class="row-time-col">
+        <div class="row-time">${c.time.split(' ')[0]}</div>
+        <div class="row-time-sub">${c.time.includes('am') ? 'AM' : 'PM'}</div>
+      </div>
+      <div class="row-body">
+        <div class="row-name">${c.name}</div>
+        <div class="row-tags">
+          <span class="row-tag ${m.tagClass || ''}">${m.tagLabel || 'Course'}</span>
+        </div>
+        <div class="row-loc">${c.location}</div>
       </div>
     </div>`;
-  }
+  }).join('');
+}
 
-  function applyFilters() {
-    const typeVal = document.getElementById('filterType').value;
-    const locVal  = document.getElementById('filterLocation').value;
-    const filtered = CLASS_DATA.filter(c =>
-      (!typeVal || c.type === typeVal) &&
-      (!locVal  || c.location === locVal)
-    );
-    const grid = document.getElementById('listingsGrid');
-    const countEl = document.getElementById('filterCount');
-    countEl.textContent = `${filtered.length} class${filtered.length !== 1 ? 'es' : ''} found`;
-    grid.innerHTML = filtered.length === 0
-      ? `<div class="no-results"><h3>No Classes Found</h3><p>Try adjusting your filters — new dates are added every month.</p></div>`
-      : filtered.map(renderCard).join('');
-  }
+/* =====================
+   RIGHT PANEL
+===================== */
+function renderDetail(c) {
+  const m = META[c.type] || {};
+  const spotsClass = c.spots <= 3 ? 'danger' : c.spots <= 6 ? 'warn' : '';
+  const spotsLabel = c.spots <= 3 ? `${c.spots} — Filling Fast` : c.spots <= 6 ? `${c.spots} Remaining` : `${c.spots} Open`;
 
-  function clearFilters() {
-    document.getElementById('filterType').value = '';
-    document.getElementById('filterLocation').value = '';
-    applyFilters();
-  }
+  document.getElementById('detailContent').innerHTML = `
+    <div class="detail-scroll">
+      <span class="detail-pill" style="background:${m.pillBg||'rgba(74,144,217,0.18)'};color:${m.pillColor||'#4a90d9'}">${m.tagLabel || 'Course'}</span>
+      <h3 class="detail-name">${c.name}</h3>
+      <div class="detail-date-line">${c.dateLabel} &nbsp;&middot;&nbsp; ${c.time} &nbsp;&middot;&nbsp; ${c.location}</div>
+      <p class="detail-desc">${m.desc || ''}</p>
+      <div class="detail-img"><img src="${m.image || 'images/beginner-handgun.jpg'}" alt="${c.name}" loading="lazy" /></div>
+      <div class="stat-rows">
+        <div class="stat-row"><span class="stat-lbl">Duration</span><span class="stat-dots"></span><span class="stat-val">${m.duration || 'Half Day'}</span></div>
+        <div class="stat-row"><span class="stat-lbl">Skill Level</span><span class="stat-dots"></span><span class="stat-val">${m.skill || 'Any Level'}</span></div>
+        <div class="stat-row"><span class="stat-lbl">Spots Remaining</span><span class="stat-dots"></span><span class="stat-val ${spotsClass}">${spotsLabel}</span></div>
+        <div class="stat-row"><span class="stat-lbl">Location</span><span class="stat-dots"></span><span class="stat-val">${c.location}</span></div>
+      </div>
+    </div>
+    <div class="detail-cta-row">
+      <a href="${c.link}" class="detail-reserve">Reserve My Spot</a>
+      <button class="detail-save" onclick="this.classList.toggle('saved')" aria-label="Save class">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+      </button>
+    </div>`;
 
+  if (window.innerWidth <= 980) {
+    document.getElementById('rightPanel').classList.add('open');
+    document.getElementById('sheetOverlay').classList.add('open');
+  }
+}
+
+function renderDetailEmpty() {
+  document.getElementById('detailContent').innerHTML = `
+    <div class="detail-empty">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <p>Select a class from the list to view details and reserve your spot.</p>
+    </div>`;
+}
+
+/* =====================
+   INTERACTIONS
+===================== */
+function selectDate(ds) {
+  selDate = ds;
+  selId = null;
+  /* Switch calendar month if needed */
+  const [y, m] = ds.split('-').map(Number);
+  calYear = y; calMonth = m - 1;
+  buildMiniCal();
+  renderCenter();
+  /* Auto-select first class on date */
+  const cls = onDate(ds);
+  if (cls.length > 0) selectClass(cls[0].id);
+}
+
+function selectClass(id) {
+  selId = id;
+  renderCenter(); /* update active row */
+  const c = CLASS_DATA.find(x => x.id === id);
+  if (c) renderDetail(c);
+}
+
+function jumpToNext() {
+  const next = filtered()
+    .filter(c => c.dateSort > selDate)
+    .sort((a, b) => a.dateSort.localeCompare(b.dateSort))[0];
+  if (next) selectDate(next.dateSort);
+}
+
+function goToClass(id) {
+  const c = CLASS_DATA.find(x => x.id === id);
+  if (!c) return;
+  const [y, m] = c.dateSort.split('-').map(Number);
+  calYear = y; calMonth = m - 1;
+  selDate = c.dateSort;
+  selId = null;
+  buildMiniCal();
+  renderCenter();
+  selectClass(id);
+}
+
+function closeSheet() {
+  document.getElementById('rightPanel').classList.remove('open');
+  document.getElementById('sheetOverlay').classList.remove('open');
+}
+
+/* =====================
+   FILTER BAR
+===================== */
+function applyFilters() {
+  fType = document.getElementById('filterType').value;
+  fLoc  = document.getElementById('filterLocation').value;
+  const count = filtered().length;
+  document.getElementById('filterCount').textContent = `${count} class${count !== 1 ? 'es' : ''} available`;
+  buildMiniCal();
+  /* Re-check center */
+  const onSelDate = onDate(selDate);
+  if (!onSelDate.find(c => c.id === selId)) selId = onSelDate[0]?.id || null;
+  renderCenter();
+  if (selId) { const c = CLASS_DATA.find(x => x.id === selId); if (c) renderDetail(c); }
+  renderUpcoming();
+}
+
+function clearFilters() {
+  document.getElementById('filterType').value = '';
+  document.getElementById('filterLocation').value = '';
   applyFilters();
+}
 
-  /* =====================
-     ROTATING QUOTES
-  ===================== */
-  const QUOTES = [
-    { text: '"I came in with zero experience and left completely confident."',               author: 'Sarah M. — Beginner Handgun'   },
-    { text: '"Best firearms training I\'ve ever had. The instructors bring real experience into every drill."', author: 'Jake T. — Rifle Proficiency'    },
-    { text: '"I\'ve taken courses at other ranges and nothing compares to NTAC."',           author: 'Daniel R. — Defensive Handgun' },
-  ];
-  let qi = 0;
-  const qEl = document.getElementById('proofQuote');
-  const aEl = document.getElementById('proofAuthor');
-  setInterval(() => {
-    qEl.style.opacity = '0';
-    setTimeout(() => {
-      qi = (qi + 1) % QUOTES.length;
-      qEl.textContent = QUOTES[qi].text;
-      aEl.textContent = QUOTES[qi].author;
-      qEl.style.opacity = '1';
-    }, 350);
-  }, 4000);
+/* =====================
+   UPCOMING (left panel)
+===================== */
+function renderUpcoming() {
+  const items = filtered()
+    .filter(c => c.dateSort >= TODAY)
+    .sort((a, b) => a.dateSort.localeCompare(b.dateSort))
+    .slice(0, 4);
+  document.getElementById('upcomingList').innerHTML = items.map(c =>
+    `<div class="upcoming-item" onclick="goToClass(${c.id})">
+      <div class="upcoming-item-name">${c.name}</div>
+      <div class="upcoming-item-meta">${c.dateLabel} &middot; ${c.location}</div>
+    </div>`
+  ).join('');
+}
 
-  /* =====================
-     NAV HAMBURGER
-  ===================== */
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    mobileMenu.classList.toggle('open');
-  });
-  function closeMenu() {
-    hamburger.classList.remove('open');
-    mobileMenu.classList.remove('open');
-  }
+/* =====================
+   ROTATING QUOTES
+===================== */
+const QUOTES = [
+  { text: '"I came in with zero experience and left completely confident."',                                    author: 'Sarah M. — Beginner Handgun'   },
+  { text: '"Best firearms training I\'ve ever had. The instructors bring real experience into every drill."',  author: 'Jake T. — Rifle Proficiency'    },
+  { text: '"I\'ve taken courses at other ranges and nothing compares to NTAC."',                               author: 'Daniel R. — Defensive Handgun' },
+];
+let qi = 0;
+const qEl = document.getElementById('proofQuote');
+const aEl = document.getElementById('proofAuthor');
+setInterval(() => {
+  qEl.style.opacity = '0';
+  setTimeout(() => {
+    qi = (qi + 1) % QUOTES.length;
+    qEl.textContent = QUOTES[qi].text;
+    aEl.textContent = QUOTES[qi].author;
+    qEl.style.opacity = '1';
+  }, 350);
+}, 4000);
+
+/* =====================
+   NAV
+===================== */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+function closeMenu() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+}
+
+/* =====================
+   INIT
+===================== */
+buildMiniCal();
+renderCenter();
+renderUpcoming();
+applyFilters(); /* sets filter count */
+/* Today (May 14) has no classes — center shows "no classes" state, which is correct */
+/* User clicks a date with classes to see the dashboard in action */
 </script>
 </body>
 </html>
