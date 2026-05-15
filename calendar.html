@@ -920,7 +920,7 @@ function renderCenter() {
 /* =====================
    RIGHT PANEL
 ===================== */
-function renderDetail(c) {
+function renderDetail(c, skipSheet = false) {
   const m = META[c.type] || {};
   const spotsClass = c.spots <= 3 ? 'danger' : c.spots <= 6 ? 'warn' : '';
   const spotsLabel = c.spots <= 3 ? `${c.spots} — Filling Fast` : c.spots <= 6 ? `${c.spots} Remaining` : `${c.spots} Open`;
@@ -946,7 +946,7 @@ function renderDetail(c) {
       </button>
     </div>`;
 
-  if (window.innerWidth <= 980) {
+  if (!skipSheet && window.innerWidth <= 980) {
     document.getElementById('rightPanel').classList.add('open');
     document.getElementById('sheetOverlay').classList.add('open');
   }
@@ -971,16 +971,16 @@ function selectDate(ds) {
   calYear = y; calMonth = m - 1;
   buildMiniCal();
   renderCenter();
-  /* Auto-select first class on date */
+  /* Auto-select first class on date (don't open sheet on mobile — user taps a row to open it) */
   const cls = onDate(ds);
-  if (cls.length > 0) selectClass(cls[0].id);
+  if (cls.length > 0) selectClass(cls[0].id, true);
 }
 
-function selectClass(id) {
+function selectClass(id, skipSheet = false) {
   selId = id;
   renderCenter(); /* update active row */
   const c = CLASS_DATA.find(x => x.id === id);
-  if (c) renderDetail(c);
+  if (c) renderDetail(c, skipSheet);
 }
 
 function jumpToNext() {
