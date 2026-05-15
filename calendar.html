@@ -472,17 +472,31 @@
     <span class="filter-label-text">Filter:</span>
     <select class="filter-select" id="filterType" onchange="applyFilters()">
       <option value="">All Course Types</option>
-      <option value="beginner-handgun">Beginner Handgun</option>
-      <option value="handgun-proficiency">Handgun Proficiency</option>
-      <option value="defensive-handgun">Defensive Handgun</option>
-      <option value="ccw">CCW / Concealed Carry</option>
-      <option value="beginner-rifle">Beginner Rifle</option>
-      <option value="rifle-proficiency">Rifle Proficiency</option>
-      <option value="defensive-rifle">Defensive Rifle</option>
-      <option value="cqb">CQB / Home Defense</option>
-      <option value="womens-handgun">Women's Handgun</option>
-      <option value="tecc">TECC</option>
-      <option value="skills-maintenance">Skills Maintenance</option>
+      <optgroup label="Handgun">
+        <option value="intro-handgun">Intro to Handgun</option>
+        <option value="beginner-handgun">Beginner Handgun</option>
+        <option value="handgun-proficiency">Handgun Proficiency</option>
+        <option value="defensive-handgun">Defensive Handgun</option>
+        <option value="low-light-handgun">Low Light Handgun</option>
+        <option value="handgun-manipulations">Handgun Manipulations</option>
+        <option value="comp-handgun">Competition Handgun</option>
+        <option value="ccw">CCW / Concealed Carry</option>
+        <option value="womens-handgun">Women's Handgun</option>
+      </optgroup>
+      <optgroup label="Rifle">
+        <option value="beginner-rifle">Beginner Rifle</option>
+        <option value="rifle-proficiency">Rifle Proficiency</option>
+        <option value="defensive-rifle">Defensive Rifle</option>
+        <option value="rifle-manipulations">Rifle Manipulations</option>
+        <option value="cqb">CQB / Home Defense</option>
+      </optgroup>
+      <optgroup label="Specialty">
+        <option value="defensive-shotgun">Defensive Shotgun</option>
+        <option value="shooting-barricades">Shooting Around Barricades</option>
+        <option value="team-tactics">Team Tactics</option>
+        <option value="tecc">TECC</option>
+        <option value="skills-maintenance">Skills Maintenance</option>
+      </optgroup>
     </select>
     <select class="filter-select" id="filterLocation" onchange="applyFilters()">
       <option value="">All Locations</option>
@@ -683,26 +697,75 @@
    CLASS DATA
 ===================== */
 const CLASS_DATA = [
-  { name: "Rifle Proficiency",     type: "rifle-proficiency",   dateLabel: "May 16, 2026",     dateSort: "2026-05-16", time: "9:30 am",  location: "Layton",   spots: 5,  link: "rifle-proficiency.html" },
-  { name: "Beginner Handgun",      type: "beginner-handgun",    dateLabel: "May 19–20, 2026",  dateSort: "2026-05-19", time: "5:00 pm",  location: "Orem TP",  spots: 8,  link: "beginner-handgun.html"  },
-  { name: "Rifle Proficiency",     type: "rifle-proficiency",   dateLabel: "May 20–21, 2026",  dateSort: "2026-05-20", time: "5:30 pm",  location: "Orem TP",  spots: 3,  link: "rifle-proficiency.html" },
-  { name: "CCW / Concealed Carry", type: "ccw",                 dateLabel: "May 23, 2026",     dateSort: "2026-05-23", time: "9:00 am",  location: "Layton",   spots: 5,  link: "#"                      },
-  { name: "Women's Handgun",       type: "womens-handgun",      dateLabel: "May 23, 2026",     dateSort: "2026-05-23", time: "10:00 am", location: "Layton",   spots: 6,  link: "#"                      },
-  { name: "Defensive Rifle",       type: "defensive-rifle",     dateLabel: "May 23, 2026",     dateSort: "2026-05-23", time: "9:30 am",  location: "Tooele",   spots: 12, link: "defensive-rifle.html"   },
-  { name: "TECC",                  type: "tecc",                dateLabel: "May 23, 2026",     dateSort: "2026-05-23", time: "8:00 am",  location: "Orem TP",  spots: 10, link: "#"                      },
-  { name: "Defensive Rifle",       type: "defensive-rifle",     dateLabel: "May 26, 2026",     dateSort: "2026-05-26", time: "9:00 am",  location: "The Farm", spots: 4,  link: "defensive-rifle.html"   },
-  { name: "Skills Maintenance",    type: "skills-maintenance",  dateLabel: "May 29, 2026",     dateSort: "2026-05-29", time: "9:00 am",  location: "Layton",   spots: 14, link: "#"                      },
-  { name: "CQB / Home Defense",    type: "cqb",                 dateLabel: "May 30, 2026",     dateSort: "2026-05-30", time: "9:00 am",  location: "The Farm", spots: 4,  link: "#"                      },
-  { name: "Handgun Proficiency",   type: "handgun-proficiency", dateLabel: "May 30, 2026",     dateSort: "2026-05-30", time: "9:16 am",  location: "Tooele",   spots: 9,  link: "handgun-proficiency.html"},
-  { name: "Defensive Rifle",       type: "defensive-rifle",     dateLabel: "May 30, 2026",     dateSort: "2026-05-30", time: "9:00 am",  location: "Layton",   spots: 2,  link: "defensive-rifle.html"   },
-  { name: "Defensive Rifle",       type: "defensive-rifle",     dateLabel: "Jun 6, 2026",      dateSort: "2026-06-06", time: "9:00 am",  location: "Murray",   spots: 7,  link: "defensive-rifle.html"   },
-  { name: "Defensive Handgun",     type: "defensive-handgun",   dateLabel: "Jun 6, 2026",      dateSort: "2026-06-06", time: "9:10 am",  location: "Layton",   spots: 7,  link: "defensive-handgun.html" },
-  { name: "Women's Handgun",       type: "womens-handgun",      dateLabel: "Jun 6, 2026",      dateSort: "2026-06-06", time: "9:00 am",  location: "Murray",   spots: 8,  link: "#"                      },
-  { name: "Handgun Proficiency",   type: "handgun-proficiency", dateLabel: "Jun 10–11, 2026",  dateSort: "2026-06-10", time: "5:00 pm",  location: "Murray",   spots: 6,  link: "handgun-proficiency.html"},
-  { name: "Defensive Handgun",     type: "defensive-handgun",   dateLabel: "Jun 10–11, 2026",  dateSort: "2026-06-10", time: "5:00 pm",  location: "Murray",   spots: 3,  link: "defensive-handgun.html" },
-  { name: "CCW / Concealed Carry", type: "ccw",                 dateLabel: "Jun 13, 2026",     dateSort: "2026-06-13", time: "9:00 am",  location: "Orem TP",  spots: 11, link: "#"                      },
-  { name: "Beginner Rifle",        type: "beginner-rifle",      dateLabel: "Jun 24–25, 2026",  dateSort: "2026-06-24", time: "5:00 pm",  location: "Orem TP",  spots: 12, link: "beginner-rifle.html"    },
-  { name: "Beginner Rifle",        type: "beginner-rifle",      dateLabel: "Jun 27, 2026",     dateSort: "2026-06-27", time: "9:30 am",  location: "Tooele",   spots: 3,  link: "beginner-rifle.html"    },
+  /* ── May 14 (today) ── */
+  { name: "Intro to Handgun",           type: "intro-handgun",         dateLabel: "May 14, 2026",     dateSort: "2026-05-14", time: "9:00 am",  location: "Orem TP",  spots: 8,  link: "#" },
+  { name: "Women's Handgun",            type: "womens-handgun",        dateLabel: "May 14, 2026",     dateSort: "2026-05-14", time: "10:00 am", location: "Murray",   spots: 7,  link: "#" },
+  { name: "TECC",                       type: "tecc",                  dateLabel: "May 14, 2026",     dateSort: "2026-05-14", time: "9:00 am",  location: "Layton",   spots: 11, link: "#" },
+  /* ── May 16 ── */
+  { name: "Rifle Proficiency",          type: "rifle-proficiency",     dateLabel: "May 16, 2026",     dateSort: "2026-05-16", time: "9:30 am",  location: "Layton",   spots: 5,  link: "rifle-proficiency.html" },
+  { name: "Low Light Handgun",          type: "low-light-handgun",     dateLabel: "May 16, 2026",     dateSort: "2026-05-16", time: "6:00 pm",  location: "Murray",   spots: 6,  link: "#" },
+  /* ── May 19 ── */
+  { name: "Beginner Handgun",           type: "beginner-handgun",      dateLabel: "May 19–20, 2026",  dateSort: "2026-05-19", time: "5:00 pm",  location: "Orem TP",  spots: 8,  link: "beginner-handgun.html" },
+  /* ── May 20 ── */
+  { name: "Rifle Proficiency",          type: "rifle-proficiency",     dateLabel: "May 20–21, 2026",  dateSort: "2026-05-20", time: "5:30 pm",  location: "Orem TP",  spots: 3,  link: "rifle-proficiency.html" },
+  /* ── May 21 ── */
+  { name: "Handgun Manipulations",      type: "handgun-manipulations", dateLabel: "May 21, 2026",     dateSort: "2026-05-21", time: "9:00 am",  location: "Layton",   spots: 9,  link: "#" },
+  /* ── May 23 ── */
+  { name: "CCW / Concealed Carry",      type: "ccw",                   dateLabel: "May 23, 2026",     dateSort: "2026-05-23", time: "9:00 am",  location: "Layton",   spots: 5,  link: "#" },
+  { name: "Women's Handgun",            type: "womens-handgun",        dateLabel: "May 23, 2026",     dateSort: "2026-05-23", time: "10:00 am", location: "Layton",   spots: 6,  link: "#" },
+  { name: "Defensive Rifle",            type: "defensive-rifle",       dateLabel: "May 23, 2026",     dateSort: "2026-05-23", time: "9:30 am",  location: "Tooele",   spots: 12, link: "defensive-rifle.html" },
+  { name: "TECC",                       type: "tecc",                  dateLabel: "May 23, 2026",     dateSort: "2026-05-23", time: "8:00 am",  location: "Orem TP",  spots: 10, link: "#" },
+  /* ── May 26 ── */
+  { name: "Defensive Rifle",            type: "defensive-rifle",       dateLabel: "May 26, 2026",     dateSort: "2026-05-26", time: "9:00 am",  location: "The Farm", spots: 4,  link: "defensive-rifle.html" },
+  { name: "Intro to Handgun",           type: "intro-handgun",         dateLabel: "May 26, 2026",     dateSort: "2026-05-26", time: "9:00 am",  location: "Murray",   spots: 12, link: "#" },
+  /* ── May 28 ── */
+  { name: "Defensive Shotgun",          type: "defensive-shotgun",     dateLabel: "May 28, 2026",     dateSort: "2026-05-28", time: "9:00 am",  location: "Tooele",   spots: 8,  link: "#" },
+  /* ── May 29 ── */
+  { name: "Skills Maintenance",         type: "skills-maintenance",    dateLabel: "May 29, 2026",     dateSort: "2026-05-29", time: "9:00 am",  location: "Layton",   spots: 14, link: "#" },
+  { name: "Rifle Manipulations",        type: "rifle-manipulations",   dateLabel: "May 29, 2026",     dateSort: "2026-05-29", time: "9:00 am",  location: "Orem TP",  spots: 5,  link: "#" },
+  /* ── May 30 ── */
+  { name: "CQB / Home Defense",         type: "cqb",                   dateLabel: "May 30, 2026",     dateSort: "2026-05-30", time: "9:00 am",  location: "The Farm", spots: 4,  link: "#" },
+  { name: "Handgun Proficiency",        type: "handgun-proficiency",   dateLabel: "May 30, 2026",     dateSort: "2026-05-30", time: "9:30 am",  location: "Tooele",   spots: 9,  link: "handgun-proficiency.html" },
+  { name: "Defensive Rifle",            type: "defensive-rifle",       dateLabel: "May 30, 2026",     dateSort: "2026-05-30", time: "9:00 am",  location: "Layton",   spots: 2,  link: "defensive-rifle.html" },
+  /* ── Jun 6 ── */
+  { name: "Defensive Rifle",            type: "defensive-rifle",       dateLabel: "Jun 6, 2026",      dateSort: "2026-06-06", time: "9:00 am",  location: "Murray",   spots: 7,  link: "defensive-rifle.html" },
+  { name: "Defensive Handgun",          type: "defensive-handgun",     dateLabel: "Jun 6, 2026",      dateSort: "2026-06-06", time: "9:10 am",  location: "Layton",   spots: 7,  link: "defensive-handgun.html" },
+  { name: "Women's Handgun",            type: "womens-handgun",        dateLabel: "Jun 6, 2026",      dateSort: "2026-06-06", time: "9:00 am",  location: "Murray",   spots: 8,  link: "#" },
+  { name: "Shooting Around Barricades", type: "shooting-barricades",   dateLabel: "Jun 6, 2026",      dateSort: "2026-06-06", time: "9:00 am",  location: "The Farm", spots: 6,  link: "#" },
+  /* ── Jun 10 ── */
+  { name: "Handgun Proficiency",        type: "handgun-proficiency",   dateLabel: "Jun 10–11, 2026",  dateSort: "2026-06-10", time: "5:00 pm",  location: "Murray",   spots: 6,  link: "handgun-proficiency.html" },
+  { name: "Defensive Handgun",          type: "defensive-handgun",     dateLabel: "Jun 10–11, 2026",  dateSort: "2026-06-10", time: "5:00 pm",  location: "Murray",   spots: 3,  link: "defensive-handgun.html" },
+  /* ── Jun 13 ── */
+  { name: "CCW / Concealed Carry",      type: "ccw",                   dateLabel: "Jun 13, 2026",     dateSort: "2026-06-13", time: "9:00 am",  location: "Orem TP",  spots: 11, link: "#" },
+  { name: "Competition Handgun",        type: "comp-handgun",          dateLabel: "Jun 13, 2026",     dateSort: "2026-06-13", time: "9:00 am",  location: "Layton",   spots: 10, link: "#" },
+  /* ── Jun 17 ── */
+  { name: "Intro to Handgun",           type: "intro-handgun",         dateLabel: "Jun 17, 2026",     dateSort: "2026-06-17", time: "9:30 am",  location: "Tooele",   spots: 14, link: "#" },
+  { name: "Handgun Proficiency",        type: "handgun-proficiency",   dateLabel: "Jun 17, 2026",     dateSort: "2026-06-17", time: "9:00 am",  location: "Murray",   spots: 7,  link: "handgun-proficiency.html" },
+  /* ── Jun 20 ── */
+  { name: "Team Tactics",               type: "team-tactics",          dateLabel: "Jun 20, 2026",     dateSort: "2026-06-20", time: "9:00 am",  location: "The Farm", spots: 8,  link: "#" },
+  /* ── Jun 24 ── */
+  { name: "Beginner Rifle",             type: "beginner-rifle",        dateLabel: "Jun 24–25, 2026",  dateSort: "2026-06-24", time: "5:00 pm",  location: "Orem TP",  spots: 12, link: "beginner-rifle.html" },
+  /* ── Jun 27 ── */
+  { name: "Beginner Rifle",             type: "beginner-rifle",        dateLabel: "Jun 27, 2026",     dateSort: "2026-06-27", time: "9:30 am",  location: "Tooele",   spots: 3,  link: "beginner-rifle.html" },
+  { name: "Women's Handgun",            type: "womens-handgun",        dateLabel: "Jun 27, 2026",     dateSort: "2026-06-27", time: "10:00 am", location: "Orem TP",  spots: 9,  link: "#" },
+  /* ── Jul 7 ── */
+  { name: "Beginner Rifle",             type: "beginner-rifle",        dateLabel: "Jul 7–8, 2026",    dateSort: "2026-07-07", time: "5:00 pm",  location: "Layton",   spots: 10, link: "beginner-rifle.html" },
+  /* ── Jul 11 ── */
+  { name: "Intro to Handgun",           type: "intro-handgun",         dateLabel: "Jul 11, 2026",     dateSort: "2026-07-11", time: "9:00 am",  location: "Murray",   spots: 12, link: "#" },
+  { name: "Low Light Handgun",          type: "low-light-handgun",     dateLabel: "Jul 11, 2026",     dateSort: "2026-07-11", time: "6:00 pm",  location: "Orem TP",  spots: 5,  link: "#" },
+  /* ── Jul 18 ── */
+  { name: "Rifle Proficiency",          type: "rifle-proficiency",     dateLabel: "Jul 18, 2026",     dateSort: "2026-07-18", time: "9:30 am",  location: "Tooele",   spots: 7,  link: "rifle-proficiency.html" },
+  { name: "Defensive Shotgun",          type: "defensive-shotgun",     dateLabel: "Jul 18, 2026",     dateSort: "2026-07-18", time: "9:00 am",  location: "Layton",   spots: 9,  link: "#" },
+  /* ── Jul 25 ── */
+  { name: "Team Tactics",               type: "team-tactics",          dateLabel: "Jul 25, 2026",     dateSort: "2026-07-25", time: "9:00 am",  location: "The Farm", spots: 6,  link: "#" },
+  /* ── Aug 1 ── */
+  { name: "Defensive Rifle",            type: "defensive-rifle",       dateLabel: "Aug 1, 2026",      dateSort: "2026-08-01", time: "9:00 am",  location: "Tooele",   spots: 8,  link: "defensive-rifle.html" },
+  { name: "Handgun Manipulations",      type: "handgun-manipulations", dateLabel: "Aug 1, 2026",      dateSort: "2026-08-01", time: "9:00 am",  location: "Murray",   spots: 6,  link: "#" },
+  /* ── Aug 6 ── */
+  { name: "Rifle Proficiency",          type: "rifle-proficiency",     dateLabel: "Aug 6, 2026",      dateSort: "2026-08-06", time: "9:30 am",  location: "Layton",   spots: 11, link: "rifle-proficiency.html" },
+  /* ── Aug 22 ── */
+  { name: "Defensive Rifle",            type: "defensive-rifle",       dateLabel: "Aug 22, 2026",     dateSort: "2026-08-22", time: "9:00 am",  location: "Layton",   spots: 9,  link: "defensive-rifle.html" },
+  { name: "Competition Handgun",        type: "comp-handgun",          dateLabel: "Aug 22, 2026",     dateSort: "2026-08-22", time: "9:00 am",  location: "Orem TP",  spots: 7,  link: "#" },
 ];
 
 /* Add IDs */
@@ -724,6 +787,14 @@ const META = {
   'tecc':                { image: 'images/community.jpg',           skill: 'Any Level',    duration: 'Half Day',  tagClass: 'tag-specialty', tagLabel: 'Specialty', pillBg: 'rgba(232,160,32,0.18)', pillColor: '#e8a020', desc: 'Tactical Emergency Casualty Care — learn to handle life-threatening injuries in the field. Covers tourniquet application, wound packing, airway management, and patient assessment.' },
   'cqb':                 { image: 'images/defensive-rifle.jpg',     skill: 'Advanced',     duration: 'Full Day',  tagClass: 'tag-specialty', tagLabel: 'Specialty', pillBg: 'rgba(232,160,32,0.18)', pillColor: '#e8a020', desc: 'Close Quarters Battle for home defense. Engage threats effectively in confined spaces with your rifle using proven military and law enforcement clearing techniques.' },
   'skills-maintenance':  { image: 'images/rifle-proficiency.jpg',   skill: 'Any Level',    duration: 'Half Day',  tagClass: 'tag-specialty', tagLabel: 'Specialty', pillBg: 'rgba(232,160,32,0.18)', pillColor: '#e8a020', desc: 'Keep your fundamentals sharp between courses. Structured live fire drills focusing on marksmanship, speed, and muscle memory — suitable for any skill level.' },
+  'intro-handgun':       { image: 'images/beginner-handgun.jpg',    skill: 'Beginner',     duration: '2 Hours',   tagClass: 'tag-handgun',   tagLabel: 'Handgun',   pillBg: 'rgba(74,144,217,0.18)', pillColor: '#4a90d9', desc: 'Never held a handgun before? Start here. Covers safe handling, basic mechanics, grip, stance, sight alignment, and your first live fire rounds — in a low-pressure, structured environment.' },
+  'low-light-handgun':   { image: 'images/defensive-handgun.jpg',   skill: 'Advanced',     duration: 'Half Day',  tagClass: 'tag-handgun',   tagLabel: 'Handgun',   pillBg: 'rgba(74,144,217,0.18)', pillColor: '#4a90d9', desc: 'Most defensive encounters happen in low-light. Learn to use handheld and weapon-mounted lights, identify threats in the dark, and shoot accurately when visibility is compromised.' },
+  'handgun-manipulations': { image: 'images/handgun-proficiency.jpg', skill: 'Advanced',   duration: 'Full Day',  tagClass: 'tag-handgun',   tagLabel: 'Handgun',   pillBg: 'rgba(74,144,217,0.18)', pillColor: '#4a90d9', desc: 'Master the mechanics of your handgun. Rapid reloads, malfunction clearances, one-handed shooting, and retention techniques — the drills that keep you running when things go wrong.' },
+  'rifle-manipulations': { image: 'images/rifle-proficiency.jpg',   skill: 'Advanced',     duration: 'Full Day',  tagClass: 'tag-rifle',     tagLabel: 'Rifle',     pillBg: 'rgba(76,175,138,0.18)', pillColor: '#4caf8a', desc: 'Single-hand malfunction clearances, support-side shooting, and rapid reload drills for the carbine. Build the instinctive rifle handling that keeps you in the fight under any condition.' },
+  'defensive-shotgun':   { image: 'images/defensive-rifle.jpg',     skill: 'Intermediate', duration: 'Full Day',  tagClass: 'tag-specialty', tagLabel: 'Specialty', pillBg: 'rgba(232,160,32,0.18)', pillColor: '#e8a020', desc: 'The shotgun is one of the most effective home defense tools available — if you know how to run it. Covers loading, patterning, ammunition selection, and defensive deployment in tight spaces.' },
+  'shooting-barricades': { image: 'images/defensive-handgun.jpg',   skill: 'Intermediate', duration: 'Half Day',  tagClass: 'tag-specialty', tagLabel: 'Specialty', pillBg: 'rgba(232,160,32,0.18)', pillColor: '#e8a020', desc: 'Learn to shoot from behind cover — not just concealment. Work through barricade positions used in armed encounters and develop the positional awareness to minimize your exposure while staying on target.' },
+  'comp-handgun':        { image: 'images/handgun-proficiency.jpg', skill: 'Intermediate', duration: 'Full Day',  tagClass: 'tag-specialty', tagLabel: 'Specialty', pillBg: 'rgba(232,160,32,0.18)', pillColor: '#e8a020', desc: 'Taught by world-class competition shooter Frank Dy. Build USPSA and IDPA fundamentals — stage planning, draw-to-first-shot speed, movement shooting, and competition-level trigger control.' },
+  'team-tactics':        { image: 'images/community.jpg',           skill: 'Advanced',     duration: 'Full Day',  tagClass: 'tag-specialty', tagLabel: 'Specialty', pillBg: 'rgba(232,160,32,0.18)', pillColor: '#e8a020', desc: 'Two or more armed defenders are exponentially more effective than one — if they train together. Cover communication, movement, roles, and the tactics law enforcement and security teams use in dynamic environments.' },
 };
 
 /* =====================
@@ -1013,12 +1084,9 @@ function closeMenu() {
 /* =====================
    INIT
 ===================== */
-buildMiniCal();
-renderCenter();
+applyFilters(); /* sets filter count, builds mini cal */
+selectDate(TODAY); /* opens on today — classes exist, auto-selects first */
 renderUpcoming();
-applyFilters(); /* sets filter count */
-/* Today (May 14) has no classes — center shows "no classes" state, which is correct */
-/* User clicks a date with classes to see the dashboard in action */
 </script>
 </body>
 </html>
